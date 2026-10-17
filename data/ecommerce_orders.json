@@ -1,0 +1,978 @@
+[
+  {
+    "orderId": "WEB0001",
+    "orderTimestamp": "2026-09-02T12:30:00Z",
+    "customerRef": "C0008",
+    "province": "British Columbia",
+    "items": [
+      {
+        "sku": "P102",
+        "category": "clothing",
+        "qty": 2,
+        "priceCAD": 64.99
+      }
+    ],
+    "orderTotalCAD": 129.98,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0002",
+    "orderTimestamp": "2026-09-03T12:30:00Z",
+    "customerRef": "C0015",
+    "province": "Alberta",
+    "items": [
+      {
+        "sku": "P103",
+        "category": "cycling",
+        "qty": 3,
+        "priceCAD": 94.99
+      }
+    ],
+    "orderTotalCAD": 284.97,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0003",
+    "orderTimestamp": "2026-09-04T12:30:00Z",
+    "customerRef": "C0022",
+    "province": "Ontario",
+    "items": [
+      {
+        "sku": "P104",
+        "category": "camping",
+        "qty": 1,
+        "priceCAD": 124.99
+      }
+    ],
+    "orderTotalCAD": 124.99,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0004",
+    "orderTimestamp": "2026-09-05T12:30:00Z",
+    "customerRef": "C0029",
+    "province": "Quebec",
+    "items": [
+      {
+        "sku": "P105",
+        "category": "hiking",
+        "qty": 2,
+        "priceCAD": 34.99
+      }
+    ],
+    "orderTotalCAD": 69.98,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0005",
+    "orderTimestamp": "2026-09-06T12:30:00Z",
+    "customerRef": "C0036",
+    "province": "British Columbia",
+    "items": [
+      {
+        "sku": "P100",
+        "category": "camping",
+        "qty": 3,
+        "priceCAD": 64.99
+      }
+    ],
+    "orderTotalCAD": 194.97,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0006",
+    "orderTimestamp": "2026-09-07T12:30:00Z",
+    "customerRef": "C0003",
+    "province": "Alberta",
+    "items": [
+      {
+        "sku": "P101",
+        "category": "hiking",
+        "qty": 1,
+        "priceCAD": 94.99
+      }
+    ],
+    "orderTotalCAD": 94.99,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0007",
+    "orderTimestamp": "2026-09-08T12:30:00Z",
+    "customerRef": "C0010",
+    "province": "Ontario",
+    "items": [
+      {
+        "sku": "P102",
+        "category": "clothing",
+        "qty": 2,
+        "priceCAD": 124.99
+      }
+    ],
+    "orderTotalCAD": 249.98,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0008",
+    "orderTimestamp": "2026-09-09T12:30:00Z",
+    "customerRef": "C0017",
+    "province": "Quebec",
+    "items": [
+      {
+        "sku": "P103",
+        "category": "cycling",
+        "qty": 3,
+        "priceCAD": 34.99
+      }
+    ],
+    "orderTotalCAD": 104.97,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0009",
+    "orderTimestamp": "2026-09-10T12:30:00Z",
+    "customerRef": "C0024",
+    "province": "British Columbia",
+    "items": [
+      {
+        "sku": "P104",
+        "category": "camping",
+        "qty": 1,
+        "priceCAD": 64.99
+      }
+    ],
+    "orderTotalCAD": 64.99,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0010",
+    "orderTimestamp": "2026-09-11T12:30:00Z",
+    "customerRef": "C0031",
+    "province": "Alberta",
+    "items": [
+      {
+        "sku": "P105",
+        "category": "hiking",
+        "qty": 2,
+        "priceCAD": 94.99
+      }
+    ],
+    "orderTotalCAD": 189.98,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0011",
+    "orderTimestamp": "2026-09-12T12:30:00Z",
+    "customerRef": "C0038",
+    "province": "Ontario",
+    "items": [
+      {
+        "sku": "P100",
+        "category": "camping",
+        "qty": 3,
+        "priceCAD": 124.99
+      }
+    ],
+    "orderTotalCAD": 374.97,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0012",
+    "orderTimestamp": "2026-09-13T12:30:00Z",
+    "customerRef": "C0005",
+    "province": "Quebec",
+    "items": [
+      {
+        "sku": "P101",
+        "category": "hiking",
+        "qty": 1,
+        "priceCAD": 34.99
+      }
+    ],
+    "orderTotalCAD": 34.99,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0013",
+    "orderTimestamp": "not-a-date",
+    "customerRef": "C0012",
+    "province": "British Columbia",
+    "items": [
+      {
+        "sku": "P102",
+        "category": "clothing",
+        "qty": 2,
+        "priceCAD": 64.99
+      }
+    ],
+    "orderTotalCAD": 129.98,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0014",
+    "orderTimestamp": "2026-09-15T12:30:00Z",
+    "customerRef": "C0019",
+    "province": "Alberta",
+    "items": [
+      {
+        "sku": "P103",
+        "category": "cycling",
+        "qty": 3,
+        "priceCAD": 94.99
+      }
+    ],
+    "orderTotalCAD": 284.97,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0015",
+    "orderTimestamp": "2026-09-16T12:30:00Z",
+    "customerRef": "C0026",
+    "province": "Ontario",
+    "items": [
+      {
+        "sku": "P104",
+        "category": "camping",
+        "qty": 1,
+        "priceCAD": 124.99
+      }
+    ],
+    "orderTotalCAD": 124.99,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0016",
+    "orderTimestamp": "2026-09-17T12:30:00Z",
+    "customerRef": "C0033",
+    "province": "Quebec",
+    "items": [
+      {
+        "sku": "P105",
+        "category": "hiking",
+        "qty": 2,
+        "priceCAD": 34.99
+      }
+    ],
+    "orderTotalCAD": 69.98,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0017",
+    "orderTimestamp": "2026-09-18T12:30:00Z",
+    "customerRef": "C0040",
+    "province": "British Columbia",
+    "items": [
+      {
+        "sku": "P100",
+        "category": "camping",
+        "qty": 3,
+        "priceCAD": 64.99
+      }
+    ],
+    "orderTotalCAD": 194.97,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0018",
+    "orderTimestamp": "2026-09-19T12:30:00Z",
+    "customerRef": "C0007",
+    "province": "Alberta",
+    "items": [
+      {
+        "sku": "P101",
+        "category": "hiking",
+        "qty": 1,
+        "priceCAD": 94.99
+      }
+    ],
+    "orderTotalCAD": 94.99,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0019",
+    "orderTimestamp": "2026-09-20T12:30:00Z",
+    "customerRef": "C0014",
+    "province": "Ontario",
+    "items": [
+      {
+        "sku": "P102",
+        "category": "clothing",
+        "qty": 2,
+        "priceCAD": 124.99
+      }
+    ],
+    "orderTotalCAD": 249.98,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0020",
+    "orderTimestamp": "2026-09-21T12:30:00Z",
+    "customerRef": "C0021",
+    "province": "Quebec",
+    "items": [
+      {
+        "sku": "P103",
+        "category": "cycling",
+        "qty": 3,
+        "priceCAD": 34.99
+      }
+    ],
+    "orderTotalCAD": 104.97,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0021",
+    "orderTimestamp": "2026-09-22T12:30:00Z",
+    "customerRef": "C8888",
+    "province": "British Columbia",
+    "items": [
+      {
+        "sku": "P104",
+        "category": "camping",
+        "qty": 1,
+        "priceCAD": 64.99
+      }
+    ],
+    "orderTotalCAD": 64.99,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0022",
+    "orderTimestamp": "2026-09-23T12:30:00Z",
+    "customerRef": "C0035",
+    "province": "Alberta",
+    "items": [
+      {
+        "sku": "P105",
+        "category": "hiking",
+        "qty": 2,
+        "priceCAD": 94.99
+      }
+    ],
+    "orderTotalCAD": 189.98,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0023",
+    "orderTimestamp": "2026-09-24T12:30:00Z",
+    "customerRef": "C0002",
+    "province": "Ontario",
+    "items": [
+      {
+        "sku": "P100",
+        "category": "camping",
+        "qty": 3,
+        "priceCAD": 124.99
+      }
+    ],
+    "orderTotalCAD": 374.97,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0024",
+    "orderTimestamp": "2026-09-25T12:30:00Z",
+    "customerRef": "C0009",
+    "province": "Quebec",
+    "items": [
+      {
+        "sku": "P101",
+        "category": "hiking",
+        "qty": 1,
+        "priceCAD": 34.99
+      }
+    ],
+    "orderTotalCAD": 34.99,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0025",
+    "orderTimestamp": "2026-09-26T12:30:00Z",
+    "customerRef": "C0016",
+    "province": "British Columbia",
+    "items": [
+      {
+        "sku": "P102",
+        "category": "clothing",
+        "qty": 2,
+        "priceCAD": 64.99
+      }
+    ],
+    "orderTotalCAD": 129.98,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0026",
+    "orderTimestamp": "2026-09-27T12:30:00Z",
+    "customerRef": "C0023",
+    "province": "Alberta",
+    "items": [
+      {
+        "sku": "P103",
+        "category": "cycling",
+        "qty": 3,
+        "priceCAD": 94.99
+      }
+    ],
+    "orderTotalCAD": 284.97,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0027",
+    "orderTimestamp": "2026-09-28T12:30:00Z",
+    "customerRef": "C0030",
+    "province": "Ontario",
+    "items": [
+      {
+        "sku": "P104",
+        "category": "camping",
+        "qty": 1,
+        "priceCAD": 124.99
+      }
+    ],
+    "orderTotalCAD": 124.99,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0028",
+    "orderTimestamp": "2026-09-29T12:30:00Z",
+    "customerRef": "C0037",
+    "province": "Quebec",
+    "items": [
+      {
+        "sku": "P105",
+        "category": "hiking",
+        "qty": 2,
+        "priceCAD": 34.99
+      }
+    ],
+    "orderTotalCAD": 69.98,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0029",
+    "orderTimestamp": "2026-09-30T12:30:00Z",
+    "customerRef": "C0004",
+    "province": "British Columbia",
+    "items": [
+      {
+        "sku": "P100",
+        "category": "camping",
+        "qty": 3,
+        "priceCAD": -12.0
+      }
+    ],
+    "orderTotalCAD": 194.97,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0030",
+    "orderTimestamp": "2026-09-01T12:30:00Z",
+    "customerRef": "C0011",
+    "province": "Alberta",
+    "items": [
+      {
+        "sku": "P101",
+        "category": "hiking",
+        "qty": 1,
+        "priceCAD": 94.99
+      }
+    ],
+    "orderTotalCAD": 94.99,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0031",
+    "orderTimestamp": "2026-09-02T12:30:00Z",
+    "customerRef": "C0018",
+    "province": "Ontario",
+    "items": [
+      {
+        "sku": "P102",
+        "category": "clothing",
+        "qty": 2,
+        "priceCAD": 124.99
+      }
+    ],
+    "orderTotalCAD": 249.98,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0032",
+    "orderTimestamp": "2026-09-03T12:30:00Z",
+    "customerRef": "C0025",
+    "province": "Quebec",
+    "items": [
+      {
+        "sku": "P103",
+        "category": "cycling",
+        "qty": 3,
+        "priceCAD": 34.99
+      }
+    ],
+    "orderTotalCAD": 104.97,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0033",
+    "orderTimestamp": "2026-09-04T12:30:00Z",
+    "customerRef": "C0032",
+    "province": "British Columbia",
+    "items": [
+      {
+        "sku": "P104",
+        "category": "camping",
+        "qty": 1,
+        "priceCAD": 64.99
+      }
+    ],
+    "orderTotalCAD": 64.99,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0034",
+    "orderTimestamp": "2026-09-05T12:30:00Z",
+    "customerRef": "C0039",
+    "province": "Alberta",
+    "items": [
+      {
+        "sku": "P105",
+        "category": "hiking",
+        "qty": 2,
+        "priceCAD": 94.99
+      }
+    ],
+    "orderTotalCAD": 189.98,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0035",
+    "orderTimestamp": "2026-09-06T12:30:00Z",
+    "customerRef": "C0006",
+    "province": "Ontario",
+    "items": [
+      {
+        "sku": "P100",
+        "category": "camping",
+        "qty": 3,
+        "priceCAD": 124.99
+      }
+    ],
+    "orderTotalCAD": 374.97,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0036",
+    "orderTimestamp": "2026-09-07T12:30:00Z",
+    "customerRef": "C0013",
+    "province": "Quebec",
+    "items": [
+      {
+        "sku": "P101",
+        "category": "hiking",
+        "qty": 1,
+        "priceCAD": 34.99
+      }
+    ],
+    "orderTotalCAD": 34.99,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0037",
+    "orderTimestamp": "2026-09-08T12:30:00Z",
+    "customerRef": "C0020",
+    "province": "British Columbia",
+    "items": [
+      {
+        "sku": "P102",
+        "category": "N/A",
+        "qty": 2,
+        "priceCAD": 64.99
+      }
+    ],
+    "orderTotalCAD": 129.98,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0038",
+    "orderTimestamp": "2026-09-09T12:30:00Z",
+    "customerRef": "C0027",
+    "province": "Alberta",
+    "items": [
+      {
+        "sku": "P103",
+        "category": "cycling",
+        "qty": 3,
+        "priceCAD": 94.99
+      }
+    ],
+    "orderTotalCAD": 284.97,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0039",
+    "orderTimestamp": "2026-09-10T12:30:00Z",
+    "customerRef": "C0034",
+    "province": "Ontario",
+    "items": [
+      {
+        "sku": "P104",
+        "category": "camping",
+        "qty": 1,
+        "priceCAD": 124.99
+      }
+    ],
+    "orderTotalCAD": 124.99,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0040",
+    "orderTimestamp": "2026-09-11T12:30:00Z",
+    "customerRef": "C0001",
+    "province": "Quebec",
+    "items": [
+      {
+        "sku": "P105",
+        "category": "hiking",
+        "qty": 2,
+        "priceCAD": 34.99
+      }
+    ],
+    "orderTotalCAD": 69.98,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0041",
+    "orderTimestamp": "2026-09-12T12:30:00Z",
+    "customerRef": "C0008",
+    "province": "British Columbia",
+    "items": [
+      {
+        "sku": "P100",
+        "category": "camping",
+        "qty": 3,
+        "priceCAD": 64.99
+      }
+    ],
+    "orderTotalCAD": 194.97,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0042",
+    "orderTimestamp": "2026-09-13T12:30:00Z",
+    "customerRef": "C0015",
+    "province": "Alberta",
+    "items": [
+      {
+        "sku": "P101",
+        "category": "hiking",
+        "qty": 1,
+        "priceCAD": 94.99
+      }
+    ],
+    "orderTotalCAD": 94.99,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0043",
+    "orderTimestamp": "2026-09-14T12:30:00Z",
+    "customerRef": "C0022",
+    "province": "Ontario",
+    "items": [
+      {
+        "sku": "P102",
+        "category": "clothing",
+        "qty": 2,
+        "priceCAD": 124.99
+      }
+    ],
+    "orderTotalCAD": 249.98,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0044",
+    "orderTimestamp": "2026-09-15T12:30:00Z",
+    "customerRef": "C0029",
+    "province": "Quebec",
+    "items": [
+      {
+        "sku": "P103",
+        "category": "cycling",
+        "qty": 3,
+        "priceCAD": 34.99
+      }
+    ],
+    "orderTotalCAD": 104.97,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0045",
+    "orderTimestamp": "2026-09-16T12:30:00Z",
+    "customerRef": "C0036",
+    "province": "British Columbia",
+    "items": [
+      {
+        "sku": "P104",
+        "category": "camping",
+        "qty": 1,
+        "priceCAD": 64.99
+      }
+    ],
+    "orderTotalCAD": 64.99,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0046",
+    "orderTimestamp": "2026-09-17T12:30:00Z",
+    "customerRef": "C0003",
+    "province": "Alberta",
+    "items": [
+      {
+        "sku": "P105",
+        "category": "hiking",
+        "qty": 2,
+        "priceCAD": 94.99
+      }
+    ],
+    "orderTotalCAD": 189.98,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0047",
+    "orderTimestamp": "2026-09-18T12:30:00Z",
+    "customerRef": "C0010",
+    "province": "Ontario",
+    "items": [
+      {
+        "sku": "P100",
+        "category": "camping",
+        "qty": 3,
+        "priceCAD": 124.99
+      }
+    ],
+    "orderTotalCAD": 374.97,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0048",
+    "orderTimestamp": "2026-09-19T12:30:00Z",
+    "customerRef": "C0017",
+    "province": "Quebec",
+    "items": [
+      {
+        "sku": "P101",
+        "category": "hiking",
+        "qty": 1,
+        "priceCAD": 34.99
+      }
+    ],
+    "orderTotalCAD": 34.99,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0049",
+    "orderTimestamp": "2026-09-20T12:30:00Z",
+    "customerRef": "C0024",
+    "province": "British Columbia",
+    "items": [
+      {
+        "sku": "P102",
+        "category": "clothing",
+        "qty": 2,
+        "priceCAD": 64.99
+      }
+    ],
+    "orderTotalCAD": 129.98,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0050",
+    "orderTimestamp": "2026-09-21T12:30:00Z",
+    "customerRef": "C0031",
+    "province": "Alberta",
+    "items": [
+      {
+        "sku": "P103",
+        "category": "cycling",
+        "qty": 3,
+        "priceCAD": 94.99
+      }
+    ],
+    "orderTotalCAD": 284.97,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0051",
+    "orderTimestamp": "2026-09-22T12:30:00Z",
+    "customerRef": "C0038",
+    "province": "Ontario",
+    "items": [
+      {
+        "sku": "P104",
+        "category": "camping",
+        "qty": 1,
+        "priceCAD": 124.99
+      }
+    ],
+    "orderTotalCAD": 124.99,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0052",
+    "orderTimestamp": "2026-09-23T12:30:00Z",
+    "customerRef": "C0005",
+    "province": "Quebec",
+    "items": [
+      {
+        "sku": "P105",
+        "category": "hiking",
+        "qty": 2,
+        "priceCAD": 34.99
+      }
+    ],
+    "orderTotalCAD": 69.98,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0053",
+    "orderTimestamp": "2026-09-24T12:30:00Z",
+    "customerRef": "C0012",
+    "province": "British Columbia",
+    "items": [
+      {
+        "sku": "P100",
+        "category": "camping",
+        "qty": 3,
+        "priceCAD": 64.99
+      }
+    ],
+    "orderTotalCAD": 194.97,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0054",
+    "orderTimestamp": "2026-09-25T12:30:00Z",
+    "customerRef": "C0019",
+    "province": "Alberta",
+    "items": [
+      {
+        "sku": "P101",
+        "category": "hiking",
+        "qty": 1,
+        "priceCAD": 94.99
+      }
+    ],
+    "orderTotalCAD": 94.99,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0055",
+    "orderTimestamp": "2026-09-26T12:30:00Z",
+    "customerRef": "C0026",
+    "province": "Ontario",
+    "items": [
+      {
+        "sku": "P102",
+        "category": "clothing",
+        "qty": 2,
+        "priceCAD": 124.99
+      }
+    ],
+    "orderTotalCAD": 249.98,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0056",
+    "orderTimestamp": "2026-09-27T12:30:00Z",
+    "customerRef": "C0033",
+    "province": "Quebec",
+    "items": [
+      {
+        "sku": "P103",
+        "category": "cycling",
+        "qty": 3,
+        "priceCAD": 34.99
+      }
+    ],
+    "orderTotalCAD": 104.97,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0057",
+    "orderTimestamp": "2026-09-28T12:30:00Z",
+    "customerRef": "C0040",
+    "province": "British Columbia",
+    "items": [
+      {
+        "sku": "P104",
+        "category": "camping",
+        "qty": 1,
+        "priceCAD": 64.99
+      }
+    ],
+    "orderTotalCAD": 64.99,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0058",
+    "orderTimestamp": "2026-09-29T12:30:00Z",
+    "customerRef": "C0007",
+    "province": "Alberta",
+    "items": [
+      {
+        "sku": "P105",
+        "category": "hiking",
+        "qty": 2,
+        "priceCAD": 94.99
+      }
+    ],
+    "orderTotalCAD": 189.98,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0059",
+    "orderTimestamp": "2026-09-30T12:30:00Z",
+    "customerRef": "C0014",
+    "province": "Ontario",
+    "items": [
+      {
+        "sku": "P100",
+        "category": "camping",
+        "qty": 3,
+        "priceCAD": 124.99
+      }
+    ],
+    "orderTotalCAD": 374.97,
+    "channel": "web"
+  },
+  {
+    "orderId": "WEB0060",
+    "orderTimestamp": "2026-09-01T12:30:00Z",
+    "customerRef": "C0021",
+    "province": "Quebec",
+    "items": [
+      {
+        "sku": "P101",
+        "category": "hiking",
+        "qty": 1,
+        "priceCAD": 34.99
+      }
+    ],
+    "orderTotalCAD": 34.99,
+    "channel": "mobile"
+  },
+  {
+    "orderId": "WEB0006",
+    "orderTimestamp": "2026-09-07T12:30:00Z",
+    "customerRef": "C0003",
+    "province": "Alberta",
+    "items": [
+      {
+        "sku": "P101",
+        "category": "hiking",
+        "qty": 1,
+        "priceCAD": 94.99
+      }
+    ],
+    "orderTotalCAD": 94.99,
+    "channel": "mobile"
+  }
+]
