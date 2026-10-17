@@ -1,0 +1,6 @@
+# Run after configuring AWS CLI credentials for the correct Learner Lab session.
+# Replace YOUR_BUCKET_NAME with the actual existing project bucket.
+aws s3 cp data/pos_sales_2026-08-24_to_2026-08-30.csv s3://YOUR_BUCKET_NAME/landing/pos/pos_sales_2026-08-24_to_2026-08-30.csv
+aws s3 cp data/ecommerce_orders.json s3://YOUR_BUCKET_NAME/landing/ecommerce/ecommerce_orders.json
+aws s3 cp data/customer_extract.csv s3://YOUR_BUCKET_NAME/landing/customers/customer_extract.csv
+aws s3 ls s3://YOUR_BUCKET_NAME/landing/ --recursive
