@@ -4,7 +4,7 @@ AWS data engineering group project integrating POS sales, e-commerce orders, and
 
 ## Architecture
 
-![Proposed Data Lake Architecture](architecture/Thornquist_Architecture.png)
+![Proposed Data Lake Architecture](architecture/Thornquist_Architecture..png)
 
 The diagram shows the proposed data flow from source ingestion through S3 zones, data quality, transformation, and analytics. Components shown are not necessarily deployed yet.
 
