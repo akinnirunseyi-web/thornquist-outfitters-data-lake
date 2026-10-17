@@ -30,3 +30,16 @@ These examples support completeness/validity, uniqueness, referential-integrity,
 Commit the three source files and this README under repository `data/` using a feature branch and PR linked to Issue #2. Upload source files to the agreed S3 landing prefixes using the team's selected AWS account. Keep the originals unchanged. Confirm paths and schema with Justin and Seyi before ingestion. Do not commit AWS credentials.
 
 The AWS Learner Lab account used for development is separate from the shared GitHub repository. Teammates may need to reproduce resources in their own accounts.
+
+## Verified AWS S3 Landing Paths
+
+AWS Region: `us-east-1`
+
+- POS CSV: `s3://thornquist-data-lake-826238174496/landing/pos/pos_sales.csv`
+- E-commerce JSON: `s3://thornquist-data-lake-826238174496/landing/ecommerce/ecommerce_orders.json`
+- Customer extract: `s3://thornquist-data-lake-826238174496/landing/customers/customer_extract.csv`
+
+All three files were uploaded and verified using AWS CLI on October 17, 2026. The source files are intentionally left unchanged to preserve data-quality test cases.
+
+The S3 bucket belongs to an AWS Academy Learner Lab account; access from other accounts is not automatically available.
+  
