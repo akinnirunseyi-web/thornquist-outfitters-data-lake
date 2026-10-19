@@ -1,0 +1,29 @@
+{
+  "note": "Local validation run. Source files are read-only; JSONL output preserves the original record plus metadata.",
+  "customer_extract": {
+    "records_trusted": 400,
+    "records_seen": 400
+  },
+  "pos_sales": {
+    "records_seen": 1051,
+    "records_trusted": 1048,
+    "records_quarantined": 3,
+    "reason:DQ02_DUPLICATE_TRANSACTION_ID": 3
+  },
+  "ecommerce_orders": {
+    "records_seen": 265,
+    "records_trusted": 226,
+    "records_quarantined": 39,
+    "reason:DQ04_UNKNOWN_CUSTOMER_ID": 35,
+    "reason:DQ02_DUPLICATE_ORDER_ID": 5
+  },
+  "customer_reference_ids_loaded": 400,
+  "output_files": [
+    "trusted/customers.jsonl",
+    "trusted/pos_sales.jsonl",
+    "trusted/ecommerce_orders.jsonl",
+    "quarantine/customers.jsonl",
+    "quarantine/pos_sales.jsonl",
+    "quarantine/ecommerce_orders.jsonl"
+  ]
+}
