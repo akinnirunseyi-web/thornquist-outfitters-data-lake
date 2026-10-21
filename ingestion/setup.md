@@ -1,60 +1,107 @@
-# Glue Data Catalog setup (local-first)
+# Thornquist Outfitters — Data Ingestion Setup
 
 ## Scope
-Terraform manages the Glue database, three scheduled S3 crawlers, the crawler IAM role/policies, and an explicitly defined POS table. It references the existing S3 bucket and does not create it.
 
-## Expected S3 source locations
-- `s3://thornquist-data-lake-826238174496/landing/pos/`
-- `s3://thornquist-data-lake-826238174496/landing/ecommerce/`
-- `s3://thornquist-data-lake-826238174496/landing/customers/`
+Terraform manages the S3 data lake infrastructure, Glue Data Catalog,
+source crawlers, the explicit POS table, the e-commerce Lambda ingestion,
+and the Glue customer ingestion job.
 
-These prefixes are based on `data/S3_UPLOAD_COMMANDS.txt`. Confirm the team uploaded the files to these exact paths before deployment.
+The customer ingestion trigger is currently disabled to avoid automatic
+job executions during development. Run the Glue job manually when needed.
 
-## Local validation (does not deploy or require AWS credentials)
-From the repository root, run:
+## AWS environment
 
-```bash
-terraform -chdir=infrastructure/terraform fmt -recursive
-terraform -chdir=infrastructure/terraform init -backend=false
-terraform -chdir=infrastructure/terraform validate
-terraform -chdir=infrastructure/terraform plan -var-file=terraform.tfvars
-```
+- Region: us-east-1
+- S3 bucket: thornquist-data-lake-659260838742
+- Glue database: thornquist_outfitters
 
-Create `infrastructure/terraform/terraform.tfvars` from `terraform.tfvars.example` if you need to override values. Do not commit real credentials or sensitive values. `plan` reads AWS account information through the provider, so it may require valid AWS credentials; `fmt`, `init -backend=false`, and `validate` are local code checks.
+## S3 data locations
 
-## Deployment (only after local review)
-Configure valid AWS credentials for the correct learner lab/session, then review the plan. Deploy only after confirming the bucket and IAM permissions are in scope:
+### Landing zone
 
-```bash
-terraform -chdir=infrastructure/terraform init
-terraform -chdir=infrastructure/terraform plan -var-file=terraform.tfvars
-terraform -chdir=infrastructure/terraform apply -var-file=terraform.tfvars
-```
+- POS CSV: s3://thornquist-data-lake-659260838742/landing/pos/
+- E-commerce JSON: s3://thornquist-data-lake-659260838742/landing/ecommerce/
+- Customers CSV: s3://thornquist-data-lake-659260838742/landing/customers/
 
-Terraform requires permission to create Glue resources and IAM roles/policies. Some learner labs restrict IAM creation; if so, use the role provided by the lab and adapt the Terraform instead of repeatedly retrying.
+### Raw zone
 
-## Run crawlers and inspect tables
-After deployment, start the crawlers manually for immediate verification:
+- E-commerce NDJSON: s3://thornquist-data-lake-659260838742/raw/ecommerce/
+- Customers Parquet: s3://thornquist-data-lake-659260838742/raw/customers/
 
-```bash
-aws glue start-crawler --name thornquist-pos-crawler --region us-east-1
-aws glue start-crawler --name thornquist-ecommerce-crawler --region us-east-1
-aws glue start-crawler --name thornquist-customers-crawler --region us-east-1
-```
+## Ingestion workflows
 
-Wait until each crawler state is `READY` before checking the tables. The daily schedule is UTC; manual starts are faster for project evidence. The crawler output table names depend on the source filenames and Glue naming rules, so inspect the Glue database and use the actual names in Athena queries.
+### 1. POS CSV upload
 
-## Why the manual POS table exists
-The POS source has mixed `sale_date` formats and customer identifiers such as `0000000`. Crawler type inference can infer a numeric type for identifier columns and a date type for only part of the mixed date values. The explicit `pos_sales_manual` table keeps all source columns as strings so leading zeros and original date text are preserved. Parse/cast fields later in ETL after applying documented rules.
+Run from the repository root:
 
-## Add-file update test
-Add a small, valid additional source file to one of the existing source prefixes (do not overwrite the original dataset), then run the matching crawler again. Verify the crawler run succeeded and inspect the catalog table/location and Athena row results. A new file does not always create a new table; if it has a compatible schema and is in the same prefix, the existing table should normally be updated to cover the prefix. Record actual observed results in `evidence/`.
+    ./ingestion/scripts/upload_pos.sh
 
-## Evidence to capture after deployment
-1. Glue database showing the three crawler-discovered tables and `pos_sales_manual`.
-2. Successful run details for all three crawlers.
-3. POS crawler schema compared with the explicit manual table schema.
-4. Athena query editor/results for `queries/catalog-validation.sql`.
-5. Crawler run and Athena results after adding the test file.
+The script uploads the POS source CSV to the landing zone and verifies
+the uploaded object.
 
-Do not label planned or local validation as successful AWS deployment evidence.
+### 2. E-commerce JSON ingestion
+
+The Lambda function `thornquist-ecommerce-ingestion` processes JSON objects
+uploaded under `landing/ecommerce/`.
+
+It converts each order to one NDJSON line and writes the result under
+`raw/ecommerce/`. The S3 event notification filters the landing prefix and
+`.json` suffix to prevent recursive invocations from raw-zone output.
+
+### 3. Customer CSV to Parquet
+
+The Glue job `thornquist-customer-ingestion` reads customer CSV data from
+`landing/customers/` and writes Parquet output to `raw/customers/`.
+
+The transformation keeps customer fields as strings to preserve identifiers
+such as leading zeros. The job overwrites its target output when rerun.
+
+Start a run manually:
+
+    aws glue start-job-run \
+      --job-name thornquist-customer-ingestion \
+      --region us-east-1
+
+Check the latest run status:
+
+    aws glue get-job-runs \
+      --job-name thornquist-customer-ingestion \
+      --region us-east-1 \
+      --max-results 1 \
+      --query 'JobRuns[0].[Id,JobRunState,ErrorMessage]' \
+      --output table
+
+## Glue crawlers
+
+| Crawler | S3 target |
+|---|---|
+| `thornquist-pos-crawler` | `landing/pos/` |
+| `thornquist-ecommerce-crawler` | `landing/ecommerce/` |
+| `thornquist-customers-crawler` | `landing/customers/` |
+| `thornquist-customers-raw-crawler` | `raw/customers/` |
+
+The raw customer crawler catalogs the transformed Parquet dataset separately
+from the original landing CSV data.
+
+## Validation and verified results
+
+- POS CSV uploaded; verified size: 103,415 bytes.
+- E-commerce Lambda test produced 265 NDJSON lines.
+- Customer Glue job completed successfully.
+- Parquet output was created under `raw/customers/`.
+- Raw customer crawler completed successfully.
+- The raw customer table exposes seven expected columns:
+  `cust_num`, `first_name`, `last_name`, `email`, `signup_date`,
+  `loyalty_tier`, and `region`.
+- The scheduled customer ingestion trigger is deactivated during development.
+
+## Terraform validation
+
+From `infrastructure/terraform/`, run:
+
+    terraform fmt
+    terraform validate
+    terraform plan
+
+Review the plan before applying infrastructure changes. Do not commit
+Terraform state files, saved plans, credentials, or secrets.

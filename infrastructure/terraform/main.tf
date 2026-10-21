@@ -87,16 +87,22 @@ resource "aws_iam_role_policy" "source_read" {
           StringLike = {
             "s3:prefix" = [
               "landing",
-              "landing/*"
+              "landing/*",
+              "raw",
+              "raw/customers",
+              "raw/customers/*"
             ]
           }
         }
       },
       {
-        Sid      = "ReadSourceObjects"
-        Effect   = "Allow"
-        Action   = ["s3:GetObject"]
-        Resource = "arn:aws:s3:::${local.bucket_name}/landing/*"
+        Sid    = "ReadSourceObjects"
+        Effect = "Allow"
+        Action = ["s3:GetObject"]
+        Resource = [
+          "arn:aws:s3:::${local.bucket_name}/landing/*",
+          "arn:aws:s3:::${local.bucket_name}/raw/customers/*"
+        ]
       }
     ]
   })
@@ -114,6 +120,31 @@ resource "aws_glue_crawler" "sources" {
   }
 
   schedule = var.crawler_schedule
+
+  schema_change_policy {
+    update_behavior = "UPDATE_IN_DATABASE"
+    delete_behavior = "DEPRECATE_IN_DATABASE"
+  }
+
+  recrawl_policy {
+    recrawl_behavior = "CRAWL_EVERYTHING"
+  }
+
+  depends_on = [
+    aws_iam_role_policy_attachment.glue_service_role,
+    aws_iam_role_policy.source_read
+  ]
+}
+
+resource "aws_glue_crawler" "customers_raw" {
+  name          = "thornquist-customers-raw-crawler"
+  database_name = aws_glue_catalog_database.thornquist.name
+  role          = aws_iam_role.glue_crawler.arn
+  description   = "Catalog transformed customer data in Parquet format."
+
+  s3_target {
+    path = "s3://${local.bucket_name}/raw/customers/"
+  }
 
   schema_change_policy {
     update_behavior = "UPDATE_IN_DATABASE"
