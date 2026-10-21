@@ -298,7 +298,7 @@ def build_sales_model(pos_entries, orders, customer_lookup):
             "sku": None,
             "product_name": clean(record.get("product_name")),
             "category": clean(record.get("category")),
-            "quantity": float(quantity) if quantity % 1 else int(quantity),
+            "quantity": float(quantity),
             "unit_price": money(price),
             "line_amount": money(quantity * price),
             "sales_region": clean(record.get("region")),
@@ -345,7 +345,7 @@ def build_sales_model(pos_entries, orders, customer_lookup):
                 "sku": clean(item.get("sku")),
                 "product_name": clean(item.get("product_name")),
                 "category": None,
-                "quantity": float(quantity) if quantity % 1 else int(quantity),
+                "quantity": float(quantity),
                 "unit_price": money(price),
                 "line_amount": money(quantity * price),
                 "sales_region": None,
@@ -540,4 +540,4 @@ def main():
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    main()
