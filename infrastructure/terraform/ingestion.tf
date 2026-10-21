@@ -244,3 +244,140 @@ output "customer_ingestion_job_name" {
   value       = aws_glue_job.customer_ingestion.name
   description = "Scheduled Glue job for customer CSV ingestion."
 }
+
+# Sales ETL: validate, normalize, reconcile and publish Trusted/Quarantine data.
+resource "aws_s3_object" "sales_etl_script" {
+  bucket       = local.bucket_name
+  key          = "infrastructure/glue/glue_sales_etl.py"
+  source       = "${path.module}/../../transform/glue_sales_etl.py"
+  source_hash  = filemd5("${path.module}/../../transform/glue_sales_etl.py")
+  content_type = "text/x-python"
+}
+
+resource "aws_iam_role" "sales_etl_glue" {
+  name = "thornquist-sales-etl-glue-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect = "Allow"
+      Principal = {
+        Service = "glue.amazonaws.com"
+      }
+      Action = "sts:AssumeRole"
+    }]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "sales_etl_glue_service" {
+  role       = aws_iam_role.sales_etl_glue.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole"
+}
+
+resource "aws_iam_role_policy" "sales_etl_s3" {
+  name = "thornquist-sales-etl-s3-access"
+  role = aws_iam_role.sales_etl_glue.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Sid      = "ListLakePrefixes"
+        Effect   = "Allow"
+        Action   = ["s3:ListBucket"]
+        Resource = "arn:aws:s3:::${local.bucket_name}"
+        Condition = {
+          StringLike = {
+            "s3:prefix" = [
+              "landing/customers", "landing/customers/*",
+              "landing/pos", "landing/pos/*",
+              "landing/ecommerce", "landing/ecommerce/*",
+              "infrastructure/glue", "infrastructure/glue/*",
+              "trusted", "trusted/*",
+              "quarantine", "quarantine/*",
+              "reports", "reports/*",
+              "glue-temp", "glue-temp/*"
+            ]
+          }
+        }
+      },
+      {
+        Sid    = "ReadSourcesAndScript"
+        Effect = "Allow"
+        Action = ["s3:GetObject"]
+        Resource = [
+          "arn:aws:s3:::${local.bucket_name}/landing/customers/*",
+          "arn:aws:s3:::${local.bucket_name}/landing/pos/*",
+          "arn:aws:s3:::${local.bucket_name}/landing/ecommerce/*",
+          "arn:aws:s3:::${local.bucket_name}/infrastructure/glue/*"
+        ]
+      },
+      {
+        Sid    = "WriteETLOutputsAndTemp"
+        Effect = "Allow"
+        Action = [
+          "s3:PutObject",
+          "s3:AbortMultipartUpload",
+          "s3:DeleteObject"
+        ]
+        Resource = [
+          "arn:aws:s3:::${local.bucket_name}/trusted/*",
+          "arn:aws:s3:::${local.bucket_name}/trusted_$folder$",
+          "arn:aws:s3:::${local.bucket_name}/quarantine/*",
+          "arn:aws:s3:::${local.bucket_name}/reports/*",
+          "arn:aws:s3:::${local.bucket_name}/glue-temp/*"
+        ]
+      },
+      {
+        Sid      = "ReadBucketLocation"
+        Effect   = "Allow"
+        Action   = ["s3:GetBucketLocation"]
+        Resource = "arn:aws:s3:::${local.bucket_name}"
+      }
+    ]
+  })
+}
+
+resource "aws_glue_job" "sales_etl" {
+  name              = "thornquist-sales-etl"
+  description       = "Validates source records, quarantines invalid data, reconciles orders and builds the sales model."
+  role_arn          = aws_iam_role.sales_etl_glue.arn
+  glue_version      = "4.0"
+  worker_type       = "G.1X"
+  number_of_workers = 2
+  timeout           = 20
+  max_retries       = 0
+
+  command {
+    name            = "glueetl"
+    script_location = "s3://${local.bucket_name}/${aws_s3_object.sales_etl_script.key}"
+    python_version  = "3"
+  }
+
+  default_arguments = {
+    "--job-language"                     = "python"
+    "--CUSTOMERS_S3_PATH"                = "s3://${local.bucket_name}/landing/customers/customer_extract.csv"
+    "--POS_S3_PATH"                      = "s3://${local.bucket_name}/landing/pos/pos_sales_2026-08-24_to_2026-08-30.csv"
+    "--ECOMMERCE_S3_PATH"                = "s3://${local.bucket_name}/landing/ecommerce/ecommerce_orders.json"
+    "--TRUSTED_S3_PATH"                  = "s3://${local.bucket_name}/trusted"
+    "--QUARANTINE_S3_PATH"               = "s3://${local.bucket_name}/quarantine"
+    "--REPORTS_S3_PATH"                  = "s3://${local.bucket_name}/reports/sales_model"
+    "--TempDir"                          = "s3://${local.bucket_name}/glue-temp/"
+    "--enable-metrics"                   = "true"
+    "--enable-continuous-cloudwatch-log" = "true"
+  }
+
+  depends_on = [
+    aws_iam_role_policy_attachment.sales_etl_glue_service,
+    aws_iam_role_policy.sales_etl_s3
+  ]
+
+  tags = {
+    Project = "Thornquist Outfitters"
+  }
+}
+
+output "sales_etl_job_name" {
+  value       = aws_glue_job.sales_etl.name
+  description = "AWS Glue job for sales data quality, reconciliation and modeling."
+}
