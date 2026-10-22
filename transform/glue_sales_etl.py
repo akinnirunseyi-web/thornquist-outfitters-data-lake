@@ -1,6 +1,12 @@
 
 #!/usr/bin/env python3
-"""AWS Glue ETL for Thornquist Outfitters Data Lake."""
+"""AWS Glue ETL for Thornquist Outfitters Data Lake.
+
+Original transformation and quality rules: Justin (project team).
+Deployment adaptation: customer input reads Raw Parquet.
+POS and ecommerce inputs remain Raw CSV and original JSON array objects.
+Outputs overwrite only the configured Trusted, quarantine and report paths.
+"""
 
 from __future__ import annotations
 
@@ -408,11 +414,14 @@ def main():
     pos_path = args["POS_S3_PATH"]
     ecommerce_path = args["ECOMMERCE_S3_PATH"]
 
-    customers_source = read_csv_text(read_s3_text(s3, customer_path))
+    customers_source = [
+        row.asDict(recursive=True)
+        for row in spark.read.parquet(customer_path).collect()
+    ]
     pos_source = read_csv_text(read_s3_text(s3, pos_path))
     ecommerce_source = read_json_text(read_s3_text(s3, ecommerce_path))
 
-    customer_file = urlparse(customer_path).path.rsplit("/", 1)[-1]
+    customer_file = customer_path  # Parquet input is a directory of part files.
     pos_file = urlparse(pos_path).path.rsplit("/", 1)[-1]
     ecommerce_file = urlparse(ecommerce_path).path.rsplit("/", 1)[-1]
 
@@ -435,6 +444,10 @@ def main():
         pos, orders, customer_lookup
     )
     bad_orders.extend(total_rejections)
+    order_counts["records_trusted"] = len(reconciled_orders)
+    order_counts["records_quarantined"] = len(bad_orders)
+    if total_rejections:
+        order_counts["reason:DQ07_ORDER_TOTAL_MISMATCH"] += len(total_rejections)
 
     trusted_base = args["TRUSTED_S3_PATH"].rstrip("/")
     quarantine_base = args["QUARANTINE_S3_PATH"].rstrip("/")

@@ -1,0 +1,10 @@
+Source: AWS CloudShell output supplied on 22 October 2026; transcribed verbatim.
+Operation: describe_rule + test_event_pattern; no event publication/target invocation.
+
+PASS: thornquist-customer-ingestion / FAILED / matched=True
+PASS: thornquist-customer-ingestion / TIMEOUT / matched=True
+PASS: thornquist-customer-ingestion / SUCCEEDED / matched=False
+PASS: thornquist-sales-etl / FAILED / matched=True
+PASS: thornquist-sales-etl / TIMEOUT / matched=True
+PASS: thornquist-sales-etl / SUCCEEDED / matched=False
+PASS: unrelated-job / FAILED / matched=False

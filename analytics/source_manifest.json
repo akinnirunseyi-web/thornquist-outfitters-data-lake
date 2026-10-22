@@ -1,0 +1,26 @@
+{
+  "Daily sales by source.csv": {
+    "sha256": "d8170b0708060b712753ffeee47334909625bcd5d97431ff165c0c733965538d",
+    "rows": 14
+  },
+  "Sales by region and source.csv": {
+    "sha256": "6dea7b94bb68be5651d051073cd043d39b8e4e50734ffe5f094f8c8ebbb0eadb",
+    "rows": 10
+  },
+  "Top ten products.csv": {
+    "sha256": "973e84557c31965252a7e8e082e0d7c8c1460cf193fc4b5895f3b172c791ca12",
+    "rows": 10
+  },
+  "Sales by loyalty tier.csv": {
+    "sha256": "2dee6c8c1ff8cf38a3f7b825f6313e8f165752c1c1fd02b0769bf597c7474bc4",
+    "rows": 4
+  },
+  "Store sales ranking.csv": {
+    "sha256": "e028ace65021c664ef76da7d88e11ffb2921b0a0f753462e2a8a93c13580b684",
+    "rows": 10
+  },
+  "Sales_by_category.csv": {
+    "sha256": "4af0d57780a4346eacb1170aa576e437494c29edae502b9c94c5b17a5ec61292",
+    "rows": 4
+  }
+}

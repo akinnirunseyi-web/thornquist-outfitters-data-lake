@@ -1,0 +1,18 @@
+{
+  "source": [
+    "aws.glue"
+  ],
+  "detail-type": [
+    "Glue Job State Change"
+  ],
+  "detail": {
+    "jobName": [
+      "thornquist-customer-ingestion",
+      "thornquist-sales-etl"
+    ],
+    "state": [
+      "FAILED",
+      "TIMEOUT"
+    ]
+  }
+}

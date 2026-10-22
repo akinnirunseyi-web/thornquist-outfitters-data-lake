@@ -1,0 +1,14 @@
+{
+  "ecommerce_orders.json": {
+    "bytes": 143360,
+    "sha256": "874604830bfcb953e7c87fe514441b5be4f593811aeeaa55a825d56c587222d0"
+  },
+  "pos_sales_2026-08-24_to_2026-08-30.csv": {
+    "bytes": 103415,
+    "sha256": "84a27826113583e92512484381a9f32781cc8bbd1b93787d0bb551bc56d60471"
+  },
+  "customer_extract.csv": {
+    "bytes": 32519,
+    "sha256": "55effa04eb7139a05ef54280b3f9a289e07c5e7df7447fdfe64d2728faca04f1"
+  }
+}

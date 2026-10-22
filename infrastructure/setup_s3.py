@@ -12,7 +12,7 @@ FILES = {
     'customer_extract.csv': ('customers', '55effa04eb7139a05ef54280b3f9a289e07c5e7df7447fdfe64d2728faca04f1'),
 }
 PREFIXES = ['landing/', 'raw/', 'trusted/', 'curated/', 'quarantine/',
-            'athena-results/', 'landing/pos/', 'landing/ecommerce/', 'landing/customers/']
+            'athena-results/', 'reports/', 'landing/pos/', 'landing/ecommerce/', 'landing/customers/']
 
 
 def main():
