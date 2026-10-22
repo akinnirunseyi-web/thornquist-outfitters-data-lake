@@ -1,23 +1,11 @@
-# Generated local validation outputs
-output/
 __pycache__/
 *.py[cod]
 .pytest_cache/
-
-# Terraform
-**/.terraform/*
-*.tfstate
-*.tfstate.*
-*.tfplan
-crash.log
-crash.*.log
-terraform.tfvars
-
-# Terraform local files
-**/.terraform/
-*.tfstate
-*.tfstate.*
-*.tfplan
-*.tfvars
-!*.tfvars.example
-*.bak
+.venv/
+.ipynb_checkpoints/
+.env
+*.pem
+*.key
+.DS_Store
+Thumbs.db
+local-output/

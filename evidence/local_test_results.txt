@@ -1,0 +1,16 @@
+Local verification during repository assembly
+Command (from repository root): python3 -m pytest -q
+Result: 13 passed
+Scope: retained ETL pure-Python logic and complete original source-data reconciliation.
+Spark and AWS APIs were not executed by these tests.
+
+Local SQL replay (DuckDB, not Athena):
+PASS 01_daily_sales.sql: 14 rows, matched original Athena CSV
+PASS 02_regional_sales.sql: 10 rows, matched original Athena CSV
+PASS 03a_top_products.sql: 10 rows, matched original Athena CSV
+PASS 03b_category_sales.sql: 4 rows, matched transcribed category result
+PASS 04_loyalty_sales.sql: 4 rows, matched original Athena CSV
+PASS 05_store_sales.sql: 10 rows, matched original Athena CSV
+
+PASS retained Python/JSON syntax and local Markdown links.
+Original source data SHA-256 values preserved.

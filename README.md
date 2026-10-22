@@ -1,76 +1,90 @@
-# Thornquist Outfitters — Governed AWS Data Lake
+# Thornquist Outfitters Data Lake
 
-AWS data engineering group project integrating POS sales, e-commerce orders, and customer data into a governed data lake using Amazon S3, AWS Glue, AWS Lambda, and Amazon Athena.
+AWS data engineering project integrating POS sales, ecommerce orders and customer records through S3 Landing, Raw, Trusted and Curated zones. The verified reporting week is **24–30 August 2026**. Sources are synthetic instructor-provided data.
 
-## Architecture
+## Results
 
-![Proposed Data Lake Architecture](architecture/Thornquist_Architecture..png)
+| Measure | Verified result |
+| --- | ---: |
+| Customers accepted | 400 |
+| POS records accepted / quarantined | 1,048 / 3 |
+| Ecommerce orders accepted / quarantined | 226 / 39 |
+| Accepted sales lines | 1,601 |
+| Total accepted sales | 320,570.35 |
+| POS / ecommerce sales | 214,561.78 / 106,008.57 |
 
-The diagram shows the proposed data flow from source ingestion through S3 zones, data quality, transformation, and analytics. Components shown are not necessarily deployed yet.
+Amounts use source monetary units; the dataset supplies no currency code. Rejection reasons overlap for one ecommerce order.
 
-## Team Responsibilities
+## Start here
 
-| Member | Responsibility |
-|---|---|
-| Alahi | S3 infrastructure, source datasets, architecture, documentation, evidence |
-| Justin | Ingestion pipelines, AWS Glue ETL, data quality |
-| Seyi | Athena analytics, curated data, visualization, governance |
+- [Technical report (PDF)](docs/Thornquist_Technical_Report.pdf) · [Editable Word report](docs/Thornquist_Technical_Report.docx)
+- [Architecture (two-page PDF)](architecture/Thornquist_Architecture.pdf) · [Editable draw.io](architecture/Thornquist_Architecture.drawio)
+- [Deployment and reproduction guide](docs/deployment.md)
+- [Schema and data quality](docs/schema_and_quality.md)
+- [Governance controls and limitations](governance/governance_controls.md)
+- [Monitoring and automation](docs/monitoring_and_automation.md)
+- [Evidence index](evidence/INDEX.md)
 
-## AWS Environment
+![Deployed data flow](architecture/Thornquist_Architecture_1.svg)
 
-- Region: `us-east-1`
-- S3 bucket: `thornquist-data-lake-826238174496`
-- AWS Academy Learner Lab
+## Repository structure
 
-## S3 Data Lake Zones
+| Folder | Contents |
+| --- | --- |
+| `data/` | Three unchanged source datasets |
+| `ingestion/` | POS copy, ecommerce Lambda and customer Glue scripts |
+| `transform/` | Glue sales ETL with custom quality checks |
+| `infrastructure/` | Guarded, preview-first bootstrap for a fresh S3 foundation |
+| `queries/` | Curated CTAS, validation and five numbered business questions |
+| `analytics/` | Executed notebook, HTML charts and six result CSVs |
+| `governance/` | Verified policy snapshots and clearly marked proposed analyst controls |
+| `monitoring/` | Read-only test of the deployed Glue failure rule |
+| `architecture/` | Diagram PDF, SVGs and editable source |
+| `docs/` | Report, deployment guide and focused supporting documentation |
+| `tests/` | Local checks of the retained ETL and supplied datasets |
+| `evidence/` | Verification index, local test results and captured filter-test text |
 
-| Zone | Purpose |
-|---|---|
-| landing/ | Original source files |
-| raw/ | Ingested source data |
-| trusted/ | Validated and cleaned data |
-| curated/ | Analytics-ready datasets |
-| quarantine/ | Rejected or invalid records |
-| athena-results/ | Athena query results |
+## Deployed environment
 
-## Original Source Datasets
+- Account: `470551642447`; region: `us-east-1`.
+- Bucket: `thornquist-data-lake-2026102`; catalog database: `thornquist_outfitters`.
+- Lambda: `thornquist-ingest-ecommerce`; Glue jobs: `thornquist-customer-ingestion`, `thornquist-sales-etl`.
+- Curated table: `thornquist_outfitters.curated_sales`.
+- Existing `LabRole` is reused under AWS Academy restrictions. No credentials are stored here.
 
-| Dataset | Records |
-|---|---:|
-| POS Sales CSV | 1,051 |
-| E-commerce Orders JSON | 265 |
-| Customer Extract CSV | 400 |
+POS ingestion is a manual Bash copy. Ecommerce uses an S3 ObjectCreated trigger and preserves the original JSON array. Customer CSV ingestion writes Raw Parquet. The sales ETL validates, joins and flattens records into Trusted Parquet, with rejects and reconciliation reports stored separately. Athena CTAS produces Snappy Parquet partitioned by year and month.
 
-All three original datasets were uploaded unchanged to the S3 landing zone and verified.
+Four crawler schedules and the customer job schedule are configured. They are independent timers; successful scheduled executions and a complete automatic refresh chain have not been demonstrated. Ecommerce NDJSON conversion, the sales job, Curated CTAS and notebook refresh are manual. [Details and test scope](docs/monitoring_and_automation.md).
 
-## Verified S3 Security
+## Five business questions
 
-- Default server-side encryption: SSE-S3 (AES256)
-- S3 Block Public Access: All four settings enabled
-- Versioning: Not enabled at verification time
-- Bucket policy: Not configured at verification time
+| # | Question | SQL | Visualization |
+| --- | --- | --- | --- |
+| 1 | How do daily POS and ecommerce sales compare? | [Daily](queries/01_daily_sales.sql) | chart_1 |
+| 2 | Which regions lead by channel? | [Regions](queries/02_regional_sales.sql) | chart_2 |
+| 3 | Which products and categories lead sales? | [Products](queries/03a_top_products.sql), [Categories](queries/03b_category_sales.sql) | chart_3, chart_4 |
+| 4 | How do customer loyalty segments differ? | [Loyalty](queries/04_loyalty_sales.sql) | chart_5 |
+| 5 | Which stores lead POS sales? | [Stores](queries/05_store_sales.sql) | chart_6 |
 
-## Infrastructure Verification
+[Open the notebook](analytics/Thornquist_Sales_Analytics.ipynb), or download [the HTML dashboard](analytics/Thornquist_Sales_Analytics.html) and open it in a browser. QuickSight access was denied in the lab; this permitted notebook fallback uses exported Athena results and has no live AWS connection. Keep the notebook beside its six CSV files when running it. Category mapping is derived at query time; [coverage and provenance](docs/category_mapping.md).
+
+## Local verification
+
+From the repository root, use Python 3.10 or later:
 
 ```bash
-aws s3 ls s3://thornquist-data-lake-826238174496/ --region us-east-1
-aws s3 ls s3://thornquist-data-lake-826238174496/landing/ --recursive --region us-east-1
-aws s3api get-bucket-encryption --bucket thornquist-data-lake-826238174496 --region us-east-1
-aws s3api get-public-access-block --bucket thornquist-data-lake-826238174496 --region us-east-1
+python3 -m pip install -r requirements.txt
+python3 -m pytest -q
 ```
 
-## Documentation and Evidence
+These tests exercise pure Python ETL logic and the supplied sample files. They do not run Spark, deploy AWS resources or prove end-to-end alert delivery. Glue runtime dependencies are supplied by AWS and are not installed through this requirements file.
 
-- [S3 Infrastructure Documentation](docs/S3_INFRASTRUCTURE.md)
-- [S3 Source Dataset Evidence](evidence/Issue02_S3_Source_Datasets.png)
-- [Architecture Diagram](architecture/Thornquist_Architecture.png)
+## Team
 
-## Implementation Status
+| Member | Contribution |
+| --- | --- |
+| Alahi | Foundation design, source data and documentation coordination |
+| Justin | Original ingestion, transformation and quality logic |
+| Seyi | Deployment adaptation, Athena/Curated analytics, visualization, scheduling, monitoring and integration verification |
 
-**Verified:** S3 zones, original datasets, encryption, public access settings, architecture documentation, and S3 evidence.
-
-**Pending team verification:** Ingestion pipelines, Glue ETL, data quality, trusted and curated datasets, Athena analytics, visualization, and governance implementation.
-
-## Deployment Notes
-
-This repository documents the AWS Academy project. Full pipeline deployment and reproducibility instructions will be added after the remaining team components are implemented and tested.
+Original transformation credit is retained in the adapted script. See [responsibility matrix](docs/team_responsibilities.md).

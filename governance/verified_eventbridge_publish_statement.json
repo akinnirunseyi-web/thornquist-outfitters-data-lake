@@ -1,0 +1,9 @@
+{
+  "Sid": "AWSEvents_thornquist-glue-job-failures_Id383d6b61-7721-4050-8236-bfddf8d8fb59",
+  "Effect": "Allow",
+  "Principal": {
+    "Service": "events.amazonaws.com"
+  },
+  "Action": "sns:Publish",
+  "Resource": "arn:aws:sns:us-east-1:470551642447:thornquist-pipeline-alerts"
+}

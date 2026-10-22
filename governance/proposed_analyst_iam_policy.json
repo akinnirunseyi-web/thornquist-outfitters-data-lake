@@ -1,0 +1,46 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "QueryDedicatedWorkgroupOnly",
+      "Effect": "Allow",
+      "Action": ["athena:StartQueryExecution", "athena:StopQueryExecution", "athena:GetQueryExecution", "athena:GetQueryResults", "athena:GetWorkGroup"],
+      "Resource": "arn:aws:athena:us-east-1:470551642447:workgroup/thornquist-analysts"
+    },
+    {
+      "Sid": "ReadCuratedTableMetadataAndAncestors",
+      "Effect": "Allow",
+      "Action": ["glue:GetDatabase", "glue:GetTable", "glue:GetPartition", "glue:GetPartitions", "glue:BatchGetPartition"],
+      "Resource": [
+        "arn:aws:glue:us-east-1:470551642447:catalog",
+        "arn:aws:glue:us-east-1:470551642447:database/thornquist_outfitters",
+        "arn:aws:glue:us-east-1:470551642447:table/thornquist_outfitters/curated_sales"
+      ]
+    },
+    {
+      "Sid": "RequestLakeFormationAuthorizedDataAccess",
+      "Effect": "Allow",
+      "Action": "lakeformation:GetDataAccess",
+      "Resource": "*"
+    },
+    {
+      "Sid": "LocateResultsBucket",
+      "Effect": "Allow",
+      "Action": "s3:GetBucketLocation",
+      "Resource": "arn:aws:s3:::thornquist-data-lake-2026102"
+    },
+    {
+      "Sid": "ListAnalystResultsOnly",
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::thornquist-data-lake-2026102",
+      "Condition": {"StringLike": {"s3:prefix": ["athena-results/analyst", "athena-results/analyst/*"]}}
+    },
+    {
+      "Sid": "ManageQueryResultObjectsOnly",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject", "s3:PutObject", "s3:AbortMultipartUpload", "s3:ListMultipartUploadParts"],
+      "Resource": "arn:aws:s3:::thornquist-data-lake-2026102/athena-results/analyst/*"
+    }
+  ]
+}
