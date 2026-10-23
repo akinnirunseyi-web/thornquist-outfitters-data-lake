@@ -21,3 +21,4 @@ terraform.tfvars
 *.tfvars
 !*.tfvars.example
 *.bak
+**/tfplan

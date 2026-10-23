@@ -179,6 +179,14 @@ resource "aws_iam_role_policy" "customer_ingestion_s3" {
         ]
       },
       {
+        Sid    = "DeleteCustomerOutput"
+        Effect = "Allow"
+        Action = ["s3:DeleteObject"]
+        Resource = [
+          "arn:aws:s3:::${local.bucket_name}/raw/customers/*",
+        ]
+      },
+      {
         Sid      = "ReadBucketLocation"
         Effect   = "Allow"
         Action   = ["s3:GetBucketLocation"]
