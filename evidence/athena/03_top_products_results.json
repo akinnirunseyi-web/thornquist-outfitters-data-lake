@@ -1,0 +1,260 @@
+{
+    "UpdateCount": 0,
+    "ResultSet": {
+        "Rows": [
+            {
+                "Data": [
+                    {
+                        "VarCharValue": "sku"
+                    },
+                    {
+                        "VarCharValue": "product_name"
+                    },
+                    {
+                        "VarCharValue": "category"
+                    },
+                    {
+                        "VarCharValue": "units_sold"
+                    },
+                    {
+                        "VarCharValue": "total_sales"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {},
+                    {
+                        "VarCharValue": "Alpine Hiking Shoe"
+                    },
+                    {
+                        "VarCharValue": "Footwear"
+                    },
+                    {
+                        "VarCharValue": "87.0"
+                    },
+                    {
+                        "VarCharValue": "15504.90"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {},
+                    {
+                        "VarCharValue": "Sleeping Bag -10C"
+                    },
+                    {
+                        "VarCharValue": "Camping"
+                    },
+                    {
+                        "VarCharValue": "78.0"
+                    },
+                    {
+                        "VarCharValue": "14299.52"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {},
+                    {
+                        "VarCharValue": "Trail Runner Low"
+                    },
+                    {
+                        "VarCharValue": "Footwear"
+                    },
+                    {
+                        "VarCharValue": "73.0"
+                    },
+                    {
+                        "VarCharValue": "12734.59"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {},
+                    {
+                        "VarCharValue": "Sleeping Pad"
+                    },
+                    {
+                        "VarCharValue": "Camping"
+                    },
+                    {
+                        "VarCharValue": "69.0"
+                    },
+                    {
+                        "VarCharValue": "12256.44"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {},
+                    {
+                        "VarCharValue": "Down Vest"
+                    },
+                    {
+                        "VarCharValue": "Apparel"
+                    },
+                    {
+                        "VarCharValue": "61.0"
+                    },
+                    {
+                        "VarCharValue": "12108.63"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {},
+                    {
+                        "VarCharValue": "Merino Base Layer"
+                    },
+                    {
+                        "VarCharValue": "Apparel"
+                    },
+                    {
+                        "VarCharValue": "67.0"
+                    },
+                    {
+                        "VarCharValue": "11856.91"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {},
+                    {
+                        "VarCharValue": "Fleece Pullover"
+                    },
+                    {
+                        "VarCharValue": "Apparel"
+                    },
+                    {
+                        "VarCharValue": "68.0"
+                    },
+                    {
+                        "VarCharValue": "11700.77"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {},
+                    {
+                        "VarCharValue": "2-Person Tent"
+                    },
+                    {
+                        "VarCharValue": "Camping"
+                    },
+                    {
+                        "VarCharValue": "77.0"
+                    },
+                    {
+                        "VarCharValue": "11614.95"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {},
+                    {
+                        "VarCharValue": "Trailrunner Boot"
+                    },
+                    {
+                        "VarCharValue": "Footwear"
+                    },
+                    {
+                        "VarCharValue": "67.0"
+                    },
+                    {
+                        "VarCharValue": "11612.00"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {},
+                    {
+                        "VarCharValue": "Hydration Pack"
+                    },
+                    {
+                        "VarCharValue": "Accessories"
+                    },
+                    {
+                        "VarCharValue": "71.0"
+                    },
+                    {
+                        "VarCharValue": "11295.34"
+                    }
+                ]
+            }
+        ],
+        "ResultSetMetadata": {
+            "ColumnInfo": [
+                {
+                    "CatalogName": "hive",
+                    "SchemaName": "",
+                    "TableName": "",
+                    "Name": "sku",
+                    "Label": "sku",
+                    "Type": "varchar",
+                    "Precision": 2147483647,
+                    "Scale": 0,
+                    "Nullable": "UNKNOWN",
+                    "CaseSensitive": true
+                },
+                {
+                    "CatalogName": "hive",
+                    "SchemaName": "",
+                    "TableName": "",
+                    "Name": "product_name",
+                    "Label": "product_name",
+                    "Type": "varchar",
+                    "Precision": 2147483647,
+                    "Scale": 0,
+                    "Nullable": "UNKNOWN",
+                    "CaseSensitive": true
+                },
+                {
+                    "CatalogName": "hive",
+                    "SchemaName": "",
+                    "TableName": "",
+                    "Name": "category",
+                    "Label": "category",
+                    "Type": "varchar",
+                    "Precision": 2147483647,
+                    "Scale": 0,
+                    "Nullable": "UNKNOWN",
+                    "CaseSensitive": true
+                },
+                {
+                    "CatalogName": "hive",
+                    "SchemaName": "",
+                    "TableName": "",
+                    "Name": "units_sold",
+                    "Label": "units_sold",
+                    "Type": "double",
+                    "Precision": 17,
+                    "Scale": 0,
+                    "Nullable": "UNKNOWN",
+                    "CaseSensitive": false
+                },
+                {
+                    "CatalogName": "hive",
+                    "SchemaName": "",
+                    "TableName": "",
+                    "Name": "total_sales",
+                    "Label": "total_sales",
+                    "Type": "decimal",
+                    "Precision": 38,
+                    "Scale": 2,
+                    "Nullable": "UNKNOWN",
+                    "CaseSensitive": false
+                }
+            ]
+        }
+    }
+}

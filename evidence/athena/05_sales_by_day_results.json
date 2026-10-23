@@ -1,0 +1,187 @@
+{
+    "UpdateCount": 0,
+    "ResultSet": {
+        "Rows": [
+            {
+                "Data": [
+                    {
+                        "VarCharValue": "sale_date"
+                    },
+                    {
+                        "VarCharValue": "sales_lines"
+                    },
+                    {
+                        "VarCharValue": "units_sold"
+                    },
+                    {
+                        "VarCharValue": "total_sales"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {
+                        "VarCharValue": "2026-08-24"
+                    },
+                    {
+                        "VarCharValue": "226"
+                    },
+                    {
+                        "VarCharValue": "265.0"
+                    },
+                    {
+                        "VarCharValue": "46921.68"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {
+                        "VarCharValue": "2026-08-25"
+                    },
+                    {
+                        "VarCharValue": "220"
+                    },
+                    {
+                        "VarCharValue": "250.0"
+                    },
+                    {
+                        "VarCharValue": "40398.57"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {
+                        "VarCharValue": "2026-08-26"
+                    },
+                    {
+                        "VarCharValue": "208"
+                    },
+                    {
+                        "VarCharValue": "249.0"
+                    },
+                    {
+                        "VarCharValue": "45579.51"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {
+                        "VarCharValue": "2026-08-27"
+                    },
+                    {
+                        "VarCharValue": "249"
+                    },
+                    {
+                        "VarCharValue": "290.0"
+                    },
+                    {
+                        "VarCharValue": "48179.94"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {
+                        "VarCharValue": "2026-08-28"
+                    },
+                    {
+                        "VarCharValue": "245"
+                    },
+                    {
+                        "VarCharValue": "290.0"
+                    },
+                    {
+                        "VarCharValue": "50900.41"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {
+                        "VarCharValue": "2026-08-29"
+                    },
+                    {
+                        "VarCharValue": "226"
+                    },
+                    {
+                        "VarCharValue": "261.0"
+                    },
+                    {
+                        "VarCharValue": "42772.31"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {
+                        "VarCharValue": "2026-08-30"
+                    },
+                    {
+                        "VarCharValue": "227"
+                    },
+                    {
+                        "VarCharValue": "267.0"
+                    },
+                    {
+                        "VarCharValue": "45817.93"
+                    }
+                ]
+            }
+        ],
+        "ResultSetMetadata": {
+            "ColumnInfo": [
+                {
+                    "CatalogName": "hive",
+                    "SchemaName": "",
+                    "TableName": "",
+                    "Name": "sale_date",
+                    "Label": "sale_date",
+                    "Type": "date",
+                    "Precision": 0,
+                    "Scale": 0,
+                    "Nullable": "UNKNOWN",
+                    "CaseSensitive": false
+                },
+                {
+                    "CatalogName": "hive",
+                    "SchemaName": "",
+                    "TableName": "",
+                    "Name": "sales_lines",
+                    "Label": "sales_lines",
+                    "Type": "bigint",
+                    "Precision": 19,
+                    "Scale": 0,
+                    "Nullable": "UNKNOWN",
+                    "CaseSensitive": false
+                },
+                {
+                    "CatalogName": "hive",
+                    "SchemaName": "",
+                    "TableName": "",
+                    "Name": "units_sold",
+                    "Label": "units_sold",
+                    "Type": "double",
+                    "Precision": 17,
+                    "Scale": 0,
+                    "Nullable": "UNKNOWN",
+                    "CaseSensitive": false
+                },
+                {
+                    "CatalogName": "hive",
+                    "SchemaName": "",
+                    "TableName": "",
+                    "Name": "total_sales",
+                    "Label": "total_sales",
+                    "Type": "decimal",
+                    "Precision": 38,
+                    "Scale": 2,
+                    "Nullable": "UNKNOWN",
+                    "CaseSensitive": false
+                }
+            ]
+        }
+    }
+}

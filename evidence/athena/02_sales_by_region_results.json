@@ -1,0 +1,155 @@
+{
+    "UpdateCount": 0,
+    "ResultSet": {
+        "Rows": [
+            {
+                "Data": [
+                    {
+                        "VarCharValue": "region"
+                    },
+                    {
+                        "VarCharValue": "sales_lines"
+                    },
+                    {
+                        "VarCharValue": "units_sold"
+                    },
+                    {
+                        "VarCharValue": "total_sales"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {
+                        "VarCharValue": "Ontario"
+                    },
+                    {
+                        "VarCharValue": "380"
+                    },
+                    {
+                        "VarCharValue": "448.0"
+                    },
+                    {
+                        "VarCharValue": "78719.90"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {
+                        "VarCharValue": "Quebec"
+                    },
+                    {
+                        "VarCharValue": "361"
+                    },
+                    {
+                        "VarCharValue": "433.0"
+                    },
+                    {
+                        "VarCharValue": "73444.70"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {
+                        "VarCharValue": "Alberta"
+                    },
+                    {
+                        "VarCharValue": "313"
+                    },
+                    {
+                        "VarCharValue": "370.0"
+                    },
+                    {
+                        "VarCharValue": "63793.91"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {
+                        "VarCharValue": "British Columbia"
+                    },
+                    {
+                        "VarCharValue": "311"
+                    },
+                    {
+                        "VarCharValue": "359.0"
+                    },
+                    {
+                        "VarCharValue": "61872.39"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {
+                        "VarCharValue": "Atlantic"
+                    },
+                    {
+                        "VarCharValue": "236"
+                    },
+                    {
+                        "VarCharValue": "262.0"
+                    },
+                    {
+                        "VarCharValue": "42739.45"
+                    }
+                ]
+            }
+        ],
+        "ResultSetMetadata": {
+            "ColumnInfo": [
+                {
+                    "CatalogName": "hive",
+                    "SchemaName": "",
+                    "TableName": "",
+                    "Name": "region",
+                    "Label": "region",
+                    "Type": "varchar",
+                    "Precision": 2147483647,
+                    "Scale": 0,
+                    "Nullable": "UNKNOWN",
+                    "CaseSensitive": true
+                },
+                {
+                    "CatalogName": "hive",
+                    "SchemaName": "",
+                    "TableName": "",
+                    "Name": "sales_lines",
+                    "Label": "sales_lines",
+                    "Type": "bigint",
+                    "Precision": 19,
+                    "Scale": 0,
+                    "Nullable": "UNKNOWN",
+                    "CaseSensitive": false
+                },
+                {
+                    "CatalogName": "hive",
+                    "SchemaName": "",
+                    "TableName": "",
+                    "Name": "units_sold",
+                    "Label": "units_sold",
+                    "Type": "double",
+                    "Precision": 17,
+                    "Scale": 0,
+                    "Nullable": "UNKNOWN",
+                    "CaseSensitive": false
+                },
+                {
+                    "CatalogName": "hive",
+                    "SchemaName": "",
+                    "TableName": "",
+                    "Name": "total_sales",
+                    "Label": "total_sales",
+                    "Type": "decimal",
+                    "Precision": 38,
+                    "Scale": 2,
+                    "Nullable": "UNKNOWN",
+                    "CaseSensitive": false
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600">
+<rect width="100%" height="100%" fill="white"/>
+<text x="500.0" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="bold" fill="#222">Sales by Category and Channel</text>
+<text x="500.0" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="normal" fill="#222">Total sales (CAD)</text>
+<rect x="130.96" y="79.99999999999994" width="110.08" height="420.00000000000006" fill="#3977a8"/>
+<text x="186.0" y="69.99999999999994" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$106,008.57</text>
+<text x="186.0" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">Unknown / online</text>
+<rect x="302.96" y="274.8027956607659" width="110.08" height="225.19720433923408" fill="#3977a8"/>
+<text x="358.0" y="264.8027956607659" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$56,840.08</text>
+<text x="358.0" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">Camping / in_store</text>
+<rect x="474.96" y="285.54921172882536" width="110.08" height="214.45078827117464" fill="#3977a8"/>
+<text x="530.0" y="275.54921172882536" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$54,127.67</text>
+<text x="530.0" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">Accessories / in_store</text>
+<rect x="646.96" y="285.68035206964873" width="110.08" height="214.31964793035127" fill="#3977a8"/>
+<text x="702.0" y="275.68035206964873" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$54,094.57</text>
+<text x="702.0" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">Apparel / in_store</text>
+<rect x="818.96" y="303.88591978931515" width="110.08" height="196.11408021068485" fill="#3977a8"/>
+<text x="874.0" y="293.88591978931515" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$49,499.46</text>
+<text x="874.0" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">Footwear / in_store</text>
+<line x1="100" y1="500" x2="960" y2="500" stroke="#444" stroke-width="1"/>
+</svg>

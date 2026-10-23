@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600">
+<rect width="100%" height="100%" fill="white"/>
+<text x="500.0" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="bold" fill="#222">Daily Sales</text>
+<text x="500.0" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="normal" fill="#222">Total sales (CAD)</text>
+<rect x="122.11428571428571" y="112.8301206218182" width="78.62857142857143" height="387.1698793781818" fill="#3977a8"/>
+<text x="161.42857142857144" y="102.8301206218182" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$46,921.68</text>
+<text x="161.42857142857144" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">2026-08-24</text>
+<rect x="244.9714285714286" y="166.65495621744503" width="78.62857142857143" height="333.34504378255497" fill="#3977a8"/>
+<text x="284.28571428571433" y="156.65495621744503" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$40,398.57</text>
+<text x="284.28571428571433" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">2026-08-25</text>
+<rect x="367.8285714285714" y="123.90491157143924" width="78.62857142857143" height="376.09508842856076" fill="#3977a8"/>
+<text x="407.1428571428571" y="113.90491157143924" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$45,579.51</text>
+<text x="407.1428571428571" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">2026-08-26</text>
+<rect x="490.68571428571425" y="102.44770523459437" width="78.62857142857143" height="397.55229476540563" fill="#3977a8"/>
+<text x="530.0" y="92.44770523459437" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$48,179.94</text>
+<text x="530.0" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">2026-08-27</text>
+<rect x="613.5428571428572" y="79.99999999999994" width="78.62857142857143" height="420.00000000000006" fill="#3977a8"/>
+<text x="652.8571428571429" y="69.99999999999994" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$50,900.41</text>
+<text x="652.8571428571429" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">2026-08-28</text>
+<rect x="736.4000000000001" y="147.0682613362054" width="78.62857142857143" height="352.9317386637946" fill="#3977a8"/>
+<text x="775.7142857142858" y="137.0682613362054" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$42,772.31</text>
+<text x="775.7142857142858" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">2026-08-29</text>
+<rect x="859.2571428571429" y="121.93761111158045" width="78.62857142857143" height="378.06238888841955" fill="#3977a8"/>
+<text x="898.5714285714286" y="111.93761111158045" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$45,817.93</text>
+<text x="898.5714285714286" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">2026-08-30</text>
+<line x1="100" y1="500" x2="960" y2="500" stroke="#444" stroke-width="1"/>
+</svg>

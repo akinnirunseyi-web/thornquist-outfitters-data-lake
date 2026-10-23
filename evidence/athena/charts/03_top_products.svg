@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600">
+<rect width="100%" height="100%" fill="white"/>
+<text x="500.0" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="bold" fill="#222">Top 10 Products by Sales</text>
+<text x="500.0" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="normal" fill="#222">Total sales (CAD)</text>
+<text x="338" y="106.03999999999999" text-anchor="end" font-family="Arial, sans-serif" font-size="13" font-weight="normal" fill="#222">Alpine Hiking Shoe</text>
+<rect x="350" y="88.4" width="610.0" height="23.1" fill="#3977a8"/>
+<text x="968.0" y="106.03999999999999" text-anchor="start" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$15,504.90</text>
+<text x="338" y="148.04" text-anchor="end" font-family="Arial, sans-serif" font-size="13" font-weight="normal" fill="#222">Sleeping Bag -10C</text>
+<rect x="350" y="130.4" width="562.5774561590208" height="23.1" fill="#3977a8"/>
+<text x="920.5774561590208" y="148.04" text-anchor="start" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$14,299.52</text>
+<text x="338" y="190.04" text-anchor="end" font-family="Arial, sans-serif" font-size="13" font-weight="normal" fill="#222">Trail Runner Low</text>
+<rect x="350" y="172.4" width="501.00935188230824" height="23.1" fill="#3977a8"/>
+<text x="859.0093518823082" y="190.04" text-anchor="start" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$12,734.59</text>
+<text x="338" y="232.04" text-anchor="end" font-family="Arial, sans-serif" font-size="13" font-weight="normal" fill="#222">Sleeping Pad</text>
+<rect x="350" y="214.4" width="482.1977826364569" height="23.1" fill="#3977a8"/>
+<text x="840.1977826364569" y="232.04" text-anchor="start" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$12,256.44</text>
+<text x="338" y="274.04" text-anchor="end" font-family="Arial, sans-serif" font-size="13" font-weight="normal" fill="#222">Down Vest</text>
+<rect x="350" y="256.4" width="476.3825822804404" height="23.1" fill="#3977a8"/>
+<text x="834.3825822804404" y="274.04" text-anchor="start" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$12,108.63</text>
+<text x="338" y="316.04" text-anchor="end" font-family="Arial, sans-serif" font-size="13" font-weight="normal" fill="#222">Merino Base Layer</text>
+<rect x="350" y="298.4" width="466.4793129913769" height="23.1" fill="#3977a8"/>
+<text x="824.4793129913769" y="316.04" text-anchor="start" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$11,856.91</text>
+<text x="338" y="358.04" text-anchor="end" font-family="Arial, sans-serif" font-size="13" font-weight="normal" fill="#222">Fleece Pullover</text>
+<rect x="350" y="340.4" width="460.33639043141204" height="23.1" fill="#3977a8"/>
+<text x="818.336390431412" y="358.04" text-anchor="start" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$11,700.77</text>
+<text x="338" y="400.04" text-anchor="end" font-family="Arial, sans-serif" font-size="13" font-weight="normal" fill="#222">2-Person Tent</text>
+<rect x="350" y="382.4" width="456.9600255403131" height="23.1" fill="#3977a8"/>
+<text x="814.9600255403132" y="400.04" text-anchor="start" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$11,614.95</text>
+<text x="338" y="442.04" text-anchor="end" font-family="Arial, sans-serif" font-size="13" font-weight="normal" fill="#222">Trailrunner Boot</text>
+<rect x="350" y="424.4" width="456.84396545608166" height="23.1" fill="#3977a8"/>
+<text x="814.8439654560816" y="442.04" text-anchor="start" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$11,612.00</text>
+<text x="338" y="484.04" text-anchor="end" font-family="Arial, sans-serif" font-size="13" font-weight="normal" fill="#222">Hydration Pack</text>
+<rect x="350" y="466.4" width="444.3858006178692" height="23.1" fill="#3977a8"/>
+<text x="802.3858006178692" y="484.04" text-anchor="start" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$11,295.34</text>
+<line x1="100" y1="500" x2="960" y2="500" stroke="#444" stroke-width="1"/>
+</svg>

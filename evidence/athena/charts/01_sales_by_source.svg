@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600">
+<rect width="100%" height="100%" fill="white"/>
+<text x="500.0" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="bold" fill="#222">Sales by Source</text>
+<text x="500.0" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="normal" fill="#222">Total sales (CAD)</text>
+<rect x="177.39999999999998" y="80.0" width="275.2" height="420.0" fill="#3977a8"/>
+<text x="315.0" y="70.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$214,561.78</text>
+<text x="315.0" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">POS</text>
+<rect x="607.4" y="292.490538622489" width="275.2" height="207.50946137751097" fill="#3977a8"/>
+<text x="745.0" y="282.490538622489" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">$106,008.57</text>
+<text x="745.0" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="normal" fill="#222">ECOMMERCE</text>
+<line x1="100" y1="500" x2="960" y2="500" stroke="#444" stroke-width="1"/>
+</svg>

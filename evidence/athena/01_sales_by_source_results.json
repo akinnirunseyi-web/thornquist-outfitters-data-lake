@@ -1,0 +1,128 @@
+{
+    "UpdateCount": 0,
+    "ResultSet": {
+        "Rows": [
+            {
+                "Data": [
+                    {
+                        "VarCharValue": "source_system"
+                    },
+                    {
+                        "VarCharValue": "sales_lines"
+                    },
+                    {
+                        "VarCharValue": "transactions"
+                    },
+                    {
+                        "VarCharValue": "total_sales"
+                    },
+                    {
+                        "VarCharValue": "units_sold"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {
+                        "VarCharValue": "pos"
+                    },
+                    {
+                        "VarCharValue": "1048"
+                    },
+                    {
+                        "VarCharValue": "1048"
+                    },
+                    {
+                        "VarCharValue": "214561.78"
+                    },
+                    {
+                        "VarCharValue": "1251.0"
+                    }
+                ]
+            },
+            {
+                "Data": [
+                    {
+                        "VarCharValue": "ecommerce"
+                    },
+                    {
+                        "VarCharValue": "553"
+                    },
+                    {
+                        "VarCharValue": "0"
+                    },
+                    {
+                        "VarCharValue": "106008.57"
+                    },
+                    {
+                        "VarCharValue": "621.0"
+                    }
+                ]
+            }
+        ],
+        "ResultSetMetadata": {
+            "ColumnInfo": [
+                {
+                    "CatalogName": "hive",
+                    "SchemaName": "",
+                    "TableName": "",
+                    "Name": "source_system",
+                    "Label": "source_system",
+                    "Type": "varchar",
+                    "Precision": 2147483647,
+                    "Scale": 0,
+                    "Nullable": "UNKNOWN",
+                    "CaseSensitive": true
+                },
+                {
+                    "CatalogName": "hive",
+                    "SchemaName": "",
+                    "TableName": "",
+                    "Name": "sales_lines",
+                    "Label": "sales_lines",
+                    "Type": "bigint",
+                    "Precision": 19,
+                    "Scale": 0,
+                    "Nullable": "UNKNOWN",
+                    "CaseSensitive": false
+                },
+                {
+                    "CatalogName": "hive",
+                    "SchemaName": "",
+                    "TableName": "",
+                    "Name": "transactions",
+                    "Label": "transactions",
+                    "Type": "bigint",
+                    "Precision": 19,
+                    "Scale": 0,
+                    "Nullable": "UNKNOWN",
+                    "CaseSensitive": false
+                },
+                {
+                    "CatalogName": "hive",
+                    "SchemaName": "",
+                    "TableName": "",
+                    "Name": "total_sales",
+                    "Label": "total_sales",
+                    "Type": "decimal",
+                    "Precision": 38,
+                    "Scale": 2,
+                    "Nullable": "UNKNOWN",
+                    "CaseSensitive": false
+                },
+                {
+                    "CatalogName": "hive",
+                    "SchemaName": "",
+                    "TableName": "",
+                    "Name": "units_sold",
+                    "Label": "units_sold",
+                    "Type": "double",
+                    "Precision": 17,
+                    "Scale": 0,
+                    "Nullable": "UNKNOWN",
+                    "CaseSensitive": false
+                }
+            ]
+        }
+    }
+}
