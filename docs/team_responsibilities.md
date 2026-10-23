@@ -1,6 +1,5 @@
 # Proposed governance and operations RACI
 
-For team review; responsibility assignments are recommendations, not evidence of completed approvals.
 
 R = Responsible (does the work); A = Accountable (approves/owns outcome); C = Consulted; I = Informed. Each activity has one A.
 
@@ -22,7 +21,7 @@ An instructor/lab administrator is an escalation point for restricted actions, n
 
 ## Contribution context
 
-Original agreed division: Alahi owns platform/architecture/documentation; Justin owns ingestion/ETL/DQ; Seyi owns Athena/visualizations/scheduling/final testing. Seyi performed integration and lab-specific adaptations while guided through the deployed build. Preserve Justin's original transformation/validation attribution and Alahi's original architecture contribution. Updated deployment files must reflect actual service choices and verified outputs rather than claiming all proposed architecture elements were deployed.
+Original agreed division: Alahi owns platform/architecture/documentation; Justin owns ingestion/ETL/DQ; Seyi owns Athena/visualizations/scheduling/final testing. Seyi performed integration and lab-specific adaptations during the deployed build. Preserved Justin's original transformation/validation attribution and Alahi's original architecture contribution. Updated deployment files must reflect actual service choices and verified outputs rather than claiming all proposed architecture elements were deployed.
 
 ## Operational handling
 
