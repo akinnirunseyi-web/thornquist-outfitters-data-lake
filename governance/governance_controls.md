@@ -1,6 +1,16 @@
 # Governance: deployed evidence and proposed design
 
-## 1. Verified observations on 22 October 2026
+| Artifact | Purpose | Status |
+| --- | --- | --- |
+| [Analyst IAM policy JSON](proposed_analyst_iam_policy.json) | Restricts the hypothetical analyst's Athena, catalog and query-result actions | Design |
+| [Cross-zone bucket policy JSON](proposed_bucket_policy.json) | Denies that analyst non-Curated source-zone reads and Curated writes | Design |
+| [Lake Formation permission list](lake_formation_permissions.md) | Names the Curated-only table grants and prerequisites | Design |
+| [Zone access RACI](access_raci.md) | Maps who should see and approve each zone | Design |
+| [Deployed HTTPS bucket policy](verified_bucket_policy.json) | Denies insecure transport | Applied in the lab |
+
+The separate [Glue failure event pattern](glue_failure_event_pattern.json) and [EventBridge SNS publishing statement](verified_eventbridge_publish_statement.json) document operational monitoring. The SNS statement is one captured statement, not a complete topic policy.
+
+## 1. AWS observations on 22–23 October 2026
 
 | Control | Observation | Evidence |
 | --- | --- | --- |
@@ -10,32 +20,34 @@
 | Runtime identity | Glue/Lambda use existing LabRole; role page listed seven attached policies | Deployment verification; deployed job/function configuration |
 | IAM inspection restriction | iam:GetPolicy explicitly denied by lab policy | Deployment verification |
 | Lake Formation inspection restriction | lakeformation:ListPermissions denied; failed listing does not establish that no grants exist | Deployment verification |
-| Customer schedule | Existing daily schedule resumed; user observed Activated, corroborated by StartTrigger at 20:48:02 UTC | Deployment verification and CloudTrail; automatic job execution not yet demonstrated |
+| Customer schedule | Daily 07:00 UTC trigger started customer run `jr_4d3cb3e1439b61f099dc644469422d22a6ced6c7537045b7ab34a6a40a891b8a` on 23 October; the run succeeded at 07:01:18 UTC. The trigger was later restarted and confirmed `ACTIVATED`. | Glue Runs and Schedules screens; saved CLI run output |
 | Logs and metrics | Glue run metrics visible and logs used for troubleshooting | Deployment verification and earlier logs |
-| Lambda error alarm | thornquist-ecommerce-lambda-errors created; Errors >=1 for one 5-minute period; subsequently OK, actions enabled | Deployment verification; Sum and not-breaching were instructed but final metric/missing-data configuration still needs direct verification |
-| Email destination | thornquist-pipeline-alerts SNS subscription reported Confirmed; alarm action points to that topic | Deployment verification; direct SNS test email received |
-| Crawler schedules | Customer 07:15, ecommerce NDJSON 07:20, POS 07:25, Trusted sales 07:30 UTC, daily | Customer saved Scheduled shown; other saves confirmed by Seyi; automatic executions not yet demonstrated |
-| POS schema protection | Seyi confirmed selecting ignore schema changes before saving POS schedule | Deployment verification workflow; post-crawl identifier-type regression not yet demonstrated |
+| Lambda error alarm | `thornquist-ecommerce-lambda-errors` monitors Errors with Sum >=1 for a 5-minute period; missing data is treated as not breaching. Actions enabled, SNS target saved. | Alarm Details and Actions screens; forced ALARM delivered an email |
+| Email destination | `thornquist-pipeline-alerts` subscription Confirmed; both the forced alarm and a real, deliberately failed Glue job delivered emails | Controlled tests and received email evidence |
+| Crawler schedules | Customer 07:15, ecommerce NDJSON 07:20, POS 07:25, Trusted sales 07:30 UTC, daily | Saved configurations and successful crawler runs; independent schedules do not establish a daily Curated refresh |
+| POS schema protection | POS crawler configured to ignore schema changes; post-crawl table shows `transaction_id`, `store_id`, and `cust_num` as strings | Saved catalog schema screenshot |
 | Glue job failure rule | thornquist-glue-job-failures Enabled on default bus; both project jobs, FAILED/TIMEOUT | Deployment verification; saved pattern read and tested through AWS API |
 | EventBridge publishing permission | SNS policy allows events.amazonaws.com to sns:Publish on the alerts topic | Captured SNS policy |
 | Failure event filter | Seven positive/negative test cases passed against the saved rule pattern | CloudShell output; pattern test does not invoke SNS |
 | Audit history | CloudTrail Event history records alarm/topic creation, trigger activation and bucket policy change | Deployment verification; not proof of a dedicated trail or S3 object data-event logging |
 
-Screenshots and raw AWS exports are indexed separately under evidence/.
+The clean-session `rehearsal01` run also completed Lambda ingestion, Raw and Trusted Athena checks, controlled bad-record rejection and correction, Curated CTAS and six business queries. Its evidence ZIP was downloaded separately. Our AWS run showed catalog tables across Landing, Raw, Trusted and Curated.
 
-## 2. What is not deployed or not verified
+## 2. Learner Lab access boundaries and test scope
 
 - A distinct analyst identity and production least-privilege roles have not been created. The lab's fixed role is reused; its hidden policies were not reviewed.
 - Live cross-zone enforcement for an analyst has not been demonstrated. The saved bucket policy enforces transport only.
 - Lake Formation grants, S3 registration and enforcement mode could not be inspected. Do not claim curated-only Lake Formation enforcement.
 - Dedicated analyst Athena workgroup/result isolation is proposed; current demonstrated queries used primary.
 - CloudTrail Event history is available, but durable trail retention and object-level access auditing were not configured or verified.
-- Direct SNS-to-email delivery was tested successfully. Neither the Lambda alarm-to-email path nor an actual Glue failure-to-EventBridge-to-SNS-to-email path has been tested end to end. An OK alarm alone does not establish function health, especially if missing data is treated as not breaching.
-- Glue failures/timeouts now have a separate EventBridge rule. Data-quality rejection counts and crawler failures do not have dedicated alerts. Scheduled configuration does not prove successful scheduled execution; see ../docs/monitoring_and_automation.md.
+- Both notification paths delivered email: a controlled forced ALARM transition and a deliberately failed Glue run through EventBridge and SNS. We did not induce a Lambda execution error to test metric detection. The forced state proves the alarm action and email route.
+- The scheduled customer Glue run succeeded. The sales ETL, Curated CTAS, NDJSON conversion and notebook refresh are manual, and the crawler schedules are independent timers. Data-quality rejection counts and crawler failures do not have dedicated alerts. See [monitoring and automation](../docs/monitoring_and_automation.md).
 
-## 3. Least-privilege target
+## 3. Least-privilege target and access RACI
 
-The proposed analyst role is arn:aws:iam::470551642447:role/ThornquistAnalyst. This is a design identifier, not an existing verified role. Do not substitute LabRole: sharing one identity between analyst and pipeline prevents meaningful identity-based separation and can break working jobs.
+Our [zone access RACI](access_raci.md) maps ingestion and ETL operators, the data steward, the Curated-only analyst and the authorized administrator to the data each should see. The delivery-responsibility RACI in `docs/team_responsibilities.md` serves a different purpose.
+
+The proposed analyst role is arn:aws:iam::470551642447:role/ThornquistAnalyst. This is a design identifier; the lab denied our attempt to create it. Reusing LabRole for the analyst would mix query access with pipeline permissions and could disrupt working jobs.
 
 The analyst IAM policy is deliberately limited to Athena workgroup thornquist-analysts; metadata for curated_sales and its ancestors; Lake Formation GetDataAccess; and query-result access under athena-results/analyst/. GetDataAccess uses Resource '*' because that IAM action is not scoped to a table ARN; Lake Formation grants determine the authorized tables.
 
@@ -71,7 +83,7 @@ Curated excludes customer first and last names, but retains a customer identifie
 5. Positive tests: analyst SELECT on curated_sales succeeds; results are written/read only in its assigned result prefix.
 6. Negative tests: analyst cannot read raw/customer files, query raw/trusted tables, inspect quarantine, alter/drop curated metadata, mutate curated objects or query through a different workgroup.
 7. Regression tests: Lambda copy, customer ingestion, ETL, catalog and curated refresh remain functional with authorized pipeline identities.
-8. SNS delivery and saved-rule filter testing are completed separately (see ../docs/monitoring_and_automation.md). Any subsequent controlled alarm or job-failure test must be labelled honestly and scoped to avoid changing production inputs.
+8. The controlled alarm and Glue failure emails and saved-rule filter tests are recorded in [monitoring and automation](../docs/monitoring_and_automation.md). Any subsequent test should use a clearly labelled test input.
 9. Retain sanitized evidence and document residual gaps. Obtain authorized support for blocked requirements rather than bypassing lab permissions.
 
 ## 6. References
@@ -81,4 +93,4 @@ Curated excludes customer first and last names, but retains a customer identifie
 - AWS Lake Formation permissions: https://docs.aws.amazon.com/lake-formation/latest/dg/lf-permissions-reference.html
 - Athena access to Glue metadata: https://docs.aws.amazon.com/athena/latest/ug/fine-grained-access-to-glue-resources.html
 
-These are proposed designs checked against documentation and local JSON syntax, not deployed/independently security-audited controls.
+The analyst-specific IAM, bucket-policy and Lake Formation files are design artifacts checked for JSON syntax where applicable. The separate HTTPS bucket policy was applied in the lab. We did not claim that analyst-only enforcement was deployed or tested.

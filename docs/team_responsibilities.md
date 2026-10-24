@@ -1,4 +1,6 @@
-# Proposed governance and operations RACI
+# Team responsibilities and governance RACI
+
+The data-access RACI requested by the project brief is in [governance/access_raci.md](../governance/access_raci.md). The table below tracks delivery responsibilities among team members; it does not substitute for the zone access matrix.
 
 
 R = Responsible (does the work); A = Accountable (approves/owns outcome); C = Consulted; I = Informed. Each activity has one A.

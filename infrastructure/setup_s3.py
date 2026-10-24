@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reproduce the Thornquist S3 foundation. Preview by default; --apply creates."""
+"""Optional S3-only foundation for a new bucket. The full pipeline runner is reproduction/clean_lab/clean_lab.py. Preview by default; --apply creates."""
 import argparse
 import hashlib
 from pathlib import Path

@@ -1,12 +1,12 @@
 # Category analysis provenance
 
-Reporting period: August 24–30, 2026. Results supplied by the user from Athena on October 22, 2026.
+Reporting period: August 24–30, 2026. We recorded these results from Athena on 22 October 2026.
 
-The original Curated table has blank categories on all 553 ecommerce lines, representing 106,008.57. POS categories cover 1,048 lines and 214,561.78. The user ran a coverage query that matched every ecommerce line to a POS product name after LOWER(TRIM(product_name)); only names with exactly one distinct nonblank POS category qualified. Coverage result: Category matched, 553 lines, 106,008.57; no unmatched group was returned.
+The original Curated table has blank categories on all 553 ecommerce lines, representing 106,008.57. POS categories cover 1,048 lines and 214,561.78. We ran a coverage query that matched every ecommerce line to a POS product name after LOWER(TRIM(product_name)); only names with exactly one distinct nonblank POS category qualified. Coverage result: Category matched, 553 lines, 106,008.57; no unmatched group was returned.
 
 The included SQL fills blank categories for analysis using those unambiguous matches. It does not update the underlying Curated table, ETL, or product master. Product-name agreement supports this derived classification but does not establish authoritative SKU equivalence across channels. Recheck coverage and ambiguity after every refresh; review any unmatched results before reporting.
 
-Sales_by_category.csv is transcribed from the final Athena results pasted by the user, rather than an original downloaded CSV:
+Sales_by_category.csv is transcribed from the final Athena query result, rather than an original downloaded CSV:
 
 | Category | Total sales |
 | --- | ---: |

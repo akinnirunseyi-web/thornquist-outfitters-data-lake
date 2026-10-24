@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Thornquist Outfitters Sales Analytics</title><style>body{font:16px/1.6 system-ui,sans-serif;background:#edf2f4;color:#172e3b;margin:0}main{max-width:1120px;margin:30px auto;background:white;padding:45px;border-top:8px solid #145c73}h1{font-size:34px;line-height:1.2}h2{margin-top:38px;color:#145c73}img{max-width:100%;height:auto}table{border-collapse:collapse;font-size:14px;width:100%}td,th{padding:9px 12px;border-bottom:1px solid #dce5e9;text-align:left}th{background:#edf4f5}pre{white-space:pre-wrap;font:13px/1.5 monospace;background:#f3f6f7;padding:14px}summary{cursor:pointer;color:#145c73}.table{overflow-x:auto}p{max-width:1000px}@media print{body{background:white}main{margin:0;padding:15px}details{display:none}img{break-inside:avoid}}</style></head><body><main><h1>Thornquist Outfitters | Sales analytics</h1>
 <h2>August 24–30, 2026</h2>
-<h0>Five business questions answered from Athena query results of `thornquist_outfitters.curated_sales`.</h0>
+<p>Five business questions answered from Athena query results of <code>thornquist_outfitters.curated_sales</code>.</p>
 <p>The AWS pipeline produced 1,601 accepted sales lines. This notebook is an offline analysis of exported results; it does not connect to AWS or refresh automatically. QuickSight access was denied for the Learner Lab role, so the notebook provides the visualization alternative in the team architecture.</p>
 <p>To run: keep this notebook beside the six included CSV files. Open it in Jupyter or VS Code with a Python kernel containing pandas and matplotlib, then run all cells. The saved outputs can also be viewed without running code. Monetary figures use source units; the exports do not specify a currency code.</p>
 <details><summary>Show Python code</summary><pre>from pathlib import Path
@@ -433,7 +433,7 @@ display(products)</pre></details>
   </tbody>
 </table></div>
 <p>### Category sales across both channels Camping leads with 84,458.34, followed by Apparel, Accessories and Footwear. The four categories reconcile to accepted sales of 320,570.35.</p>
-<p>All 553 ecommerce lines originally had blank categories (106,008.57). Each matched a POS product name after trimming whitespace and converting names to lowercase. Only names with exactly one nonblank POS category were eligible. That category fills blank categories for this analysis only. This derived classification is not a verified product master; the underlying Curated table remains unchanged. See category_mapping.sql and CATEGORY_MAPPING.md.</p>
+<p>All 553 ecommerce lines originally had blank categories (106,008.57). Each matched a POS product name after trimming whitespace and converting names to lowercase. Only names with exactly one nonblank POS category were eligible. That category fills blank categories for this analysis only. This derived classification is not a verified product master; the underlying Curated table remains unchanged. See <a href="../queries/03b_category_sales.sql">the category query</a> and <a href="../docs/category_mapping.md">the mapping notes</a>.</p>
 <details><summary>Show Python code</summary><pre>assert len(categories) == 4
 assert categories[&#x27;category&#x27;].notna().all()
 assert not categories[&#x27;category&#x27;].duplicated().any()
