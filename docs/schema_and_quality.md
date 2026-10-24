@@ -12,7 +12,7 @@ The deployed implementation is `transform/glue_sales_etl.py`. It reads Raw custo
 | CSV text versus JSON numeric measures | Decimal validation and cent rounding; Curated monetary columns DECIMAL(18,2) |
 | Store region versus shipping destination | Common reporting region retains source meaning; source-specific fields remain nullable |
 | Ecommerce has no category | Leave stored value null; category analysis uses unambiguous POS product-name mapping, with all 553 ecommerce lines matched in the verified sample |
-| POS identifiers initially inferred numeric | Catalog manually corrected to string; POS crawler configured to ignore schema changes; post-crawl regression remains to be verified |
+| POS identifiers initially inferred numeric | Catalog manually corrected to string; POS crawler configured to ignore schema changes; saved post-crawl schema screenshot shows `transaction_id`, `store_id` and `cust_num` as strings |
 
 ## Rules
 

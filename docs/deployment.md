@@ -1,6 +1,17 @@
 # Deployment and reproduction
 
-Verified target: account `470551642447`, region `us-east-1`, bucket `thornquist-data-lake-2026102`, database `thornquist_outfitters`. This guide describes the manual console/CloudShell deployment used in the Learner Lab. It is not a one-command infrastructure deployment. For another account, use a globally unique bucket and update all S3 paths and policy ARNs before running anything. Preserve the original `data/` files.
+Verified target: account `470551642447`, region `us-east-1`, bucket `thornquist-data-lake-2026102`, database `thornquist_outfitters`. This guide describes the original manual console/CloudShell deployment. For a fresh, isolated Learner Lab session, use [the repository deployment runner](../reproduction/clean_lab/README.md) and its runbook; the `rehearsal01` run completed the pipeline on 23 October. For another account, use its account number and a new run label. Preserve the original `data/` files.
+
+## Four-zone catalog map
+
+| Zone | Original deployment location | Catalog definition |
+| --- | --- | --- |
+| Landing | `landing/pos/`, `landing/ecommerce/`, `landing/customers/` | `landing_pos` DDL is in `queries/09_landing_pos_catalog.sql`; it preserves POS identifiers as strings and queries the unchanged CSV. The source JSON array and customer CSV stay intact. |
+| Raw | `raw/pos/`, `raw/ecommerce_ndjson/`, `raw/customers/` | `raw_pos`, `raw_ecommerce_ndjson`, `raw_customers` |
+| Trusted | `trusted/` | `trusted_customers`, `trusted_pos_sales`, `trusted_ecommerce_orders`, `trusted_sales_model` in the isolated reproduction; original deployment catalogs the flattened Trusted sales model |
+| Curated | `curated/sales/` | `curated_sales`, created through Athena CTAS as partitioned Parquet |
+
+Our AWS run showed catalog tables across Landing, Raw, Trusted and Curated. For a fresh deployment, [the Landing POS DDL](../queries/09_landing_pos_catalog.sql) records the Landing table definition; execute it only if that table is absent, then use [the count query](../queries/09_landing_pos_count.sql) to check for 1,051 source rows. The repository runner creates the definition and executes the count check during a fresh run. No ingestion job needs replaying merely to inspect the existing catalog.
 
 ## 1. Foundation and inputs
 
@@ -51,7 +62,7 @@ Create Spark script job `thornquist-customer-ingestion` with `ingestion/glue/cus
 | `--S3_SOURCE_PATH` | `s3://thornquist-data-lake-2026102/landing/customers/customer_extract.csv` |
 | `--S3_TARGET_PATH` | `s3://thornquist-data-lake-2026102/raw/customers/` |
 
-Run and wait for success. Expected: 400 rows, seven string fields, Parquet under Raw customers. Create/activate scheduled Glue trigger `thornquist-customer-ingestion-daily`, daily at 07:00 UTC (`cron(0 7 * * ? *)`). The job overwrites its configured Raw destination. Schedule configuration is verified; a successful scheduled run was not captured.
+Run and wait for success. Expected: 400 rows, seven string fields, Parquet under Raw customers. Create/activate scheduled Glue trigger `thornquist-customer-ingestion-daily`, daily at 07:00 UTC (`cron(0 7 * * ? *)`). The job overwrites its configured Raw destination. On 23 October, the trigger started run `jr_4d3cb3e1439b61f099dc644469422d22a6ced6c7537045b7ab34a6a40a891b8a` at 07:00:03 UTC; it succeeded at 07:01:18 UTC. The trigger was later observed deactivated, then restarted and confirmed `ACTIVATED` with the same schedule.
 
 ## 5. Catalog and crawler settings
 
@@ -64,7 +75,7 @@ Create Glue database `thornquist_outfitters`. Use `LabRole` and crawl all folder
 | `thornquist-raw-pos-crawler` | `raw/pos/` | 07:25 |
 | `thornquist-trusted-sales-crawler` | `trusted/sales_model/` | 07:30 |
 
-Run Raw crawlers after ingestion; run the Trusted crawler after the sales job. Use `SHOW TABLES IN thornquist_outfitters` to discover generated names. Validate counts: customers 400, ecommerce NDJSON 265 and POS 1,051. In the POS catalog table, ensure `transaction_id`, `store_id` and `cust_num` are strings. The POS crawler was changed to ignore schema updates to preserve these manual corrections. Other schema changes require review. A post-crawl identifier regression check remains outstanding.
+Run Raw crawlers after ingestion; run the Trusted crawler after the sales job. Use `SHOW TABLES IN thornquist_outfitters` to discover generated names. Validate counts: customers 400, ecommerce NDJSON 265 and POS 1,051. In the POS catalog table, ensure `transaction_id`, `store_id` and `cust_num` are strings. The POS crawler was changed to ignore schema updates to preserve these manual corrections. A saved post-crawl catalog screenshot shows all three identifier columns as strings; future schema changes still require review.
 
 These schedules are independent timers and do not wait for upstream success. Sales ETL has no demonstrated automatic schedule in this deployment. The Trusted schedule therefore catalogs the latest available ETL output, rather than proving a newly completed daily sales refresh.
 
@@ -93,7 +104,7 @@ In Athena, use the project database and a result location under `s3://thornquist
 
 Run `queries/validate_curated.sql`: expected 1,601 lines, 320,570.35 total, 1,048 POS lines and 553 ecommerce lines, August 24–30, 2026; partition `sale_year=2026/sale_month=08`.
 
-Run numbered business queries 01–05; Q3 has separate product and category queries. Before categories, execute `validate_category_coverage.sql`: expected `Category matched`, 553 lines, 106,008.57 with no unmatched group. SQL files reconstruct the verified analytical logic and expected result schemas; they were not re-executed against AWS during repository assembly. Preserve the five original CSV exports. The category CSV is a transcription of the supplied final query result.
+Run numbered business queries 01–05; Q3 has separate product and category queries. Before categories, execute `validate_category_coverage.sql`: expected `Category matched`, 553 lines, 106,008.57 with no unmatched group. The original-deployment SQL files reconstruct the verified analytical logic and expected result schemas; they were not re-executed against AWS during initial repository assembly. The isolated `rehearsal01` run subsequently executed six business queries against its separate Curated table. Preserve the five original CSV exports. The category CSV is a transcription of the supplied final original-deployment query result.
 
 ## 8. Visualization
 
@@ -103,13 +114,13 @@ Install `requirements.txt`, open `analytics/Thornquist_Sales_Analytics.ipynb` in
 
 Use the enabled Glue failure pattern from `governance/glue_failure_event_pattern.json` with EventBridge rule `thornquist-glue-job-failures` on the default bus. Target SNS topic `thornquist-pipeline-alerts`. The observed SNS service publishing statement is retained separately; it is not a full replacement topic policy. Add the target through the console and preserve existing permissions.
 
-The Lambda alarm `thornquist-ecommerce-lambda-errors` monitors Errors >=1 for one datapoint within five minutes and targets that SNS topic. The saved alarm was OK with actions enabled; final statistic and missing-data configuration need direct inspection. Confirm the SNS email subscription. A direct SNS test message was received. Run the read-only filter test with:
+The Lambda alarm `thornquist-ecommerce-lambda-errors` monitors Errors >=1 for one datapoint within five minutes and targets that SNS topic. The saved alarm was OK with actions enabled; its statistic was Sum and missing data was treated as not breaching. Confirm the SNS email subscription. A direct SNS test message was received. Run the read-only filter test with:
 
 ```bash
 python3 monitoring/test_glue_failure_pattern.py
 ```
 
-Seven cases passed in the lab. It does not publish events or test actual delivery. Complete job-failure-to-email and alarm-to-email paths remain untested. CloudTrail Event history supplies management-event evidence; a dedicated trail and object-level audit were not verified. See [monitoring_and_automation.md](monitoring_and_automation.md).
+Seven cases passed in the lab; pattern matching alone does not publish events. Separate controlled tests then exercised delivery: `set-alarm-state` forced the Lambda alarm to `ALARM` and sent an email, and customer Glue run `jr_37406547be22c09f7013fff8615e8c1ead464eb98f8734007dd1ee36df94bc88` failed on an intentionally missing test input and sent an email through EventBridge/SNS. The forced alarm transition did not test real Lambda error detection. CloudTrail Event history supplies management-event evidence; a dedicated trail and object-level audit were not verified. See [monitoring_and_automation.md](monitoring_and_automation.md).
 
 ## SQL reference
 

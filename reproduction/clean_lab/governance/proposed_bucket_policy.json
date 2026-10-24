@@ -1,0 +1,46 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DenyInsecureTransport",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "s3:*",
+      "Resource": ["arn:aws:s3:::__BUCKET__", "arn:aws:s3:::__BUCKET__/*"],
+      "Condition": {"Bool": {"aws:SecureTransport": "false", "aws:PrincipalIsAWSService": "false"}}
+    },
+    {
+      "Sid": "DenyAnalystAccessToNonCuratedSourceZones",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": ["s3:GetObject*", "s3:PutObject*", "s3:DeleteObject*", "s3:RestoreObject", "s3:AbortMultipartUpload", "s3:ListMultipartUploadParts"],
+      "Resource": [
+        "arn:aws:s3:::__BUCKET__/landing/*",
+        "arn:aws:s3:::__BUCKET__/raw/*",
+        "arn:aws:s3:::__BUCKET__/trusted/*",
+        "arn:aws:s3:::__BUCKET__/quarantine/*",
+        "arn:aws:s3:::__BUCKET__/reports/*"
+      ],
+      "Condition": {"ArnEquals": {"aws:PrincipalArn": "arn:aws:iam::__ACCOUNT__:role/ThornquistAnalyst"}}
+    },
+    {
+      "Sid": "DenyAnalystCuratedMutation",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": ["s3:PutObject*", "s3:DeleteObject*", "s3:RestoreObject", "s3:AbortMultipartUpload"],
+      "Resource": "arn:aws:s3:::__BUCKET__/curated/*",
+      "Condition": {"ArnEquals": {"aws:PrincipalArn": "arn:aws:iam::__ACCOUNT__:role/ThornquistAnalyst"}}
+    },
+    {
+      "Sid": "DenyAnalystListingOutsideResultsPrefix",
+      "Effect": "Deny",
+      "Principal": "*",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::__BUCKET__",
+      "Condition": {
+        "ArnEquals": {"aws:PrincipalArn": "arn:aws:iam::__ACCOUNT__:role/ThornquistAnalyst"},
+        "StringNotLike": {"s3:prefix": ["athena-results/analyst", "athena-results/analyst/*"]}
+      }
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "QueryDedicatedWorkgroupOnly",
+      "Effect": "Allow",
+      "Action": ["athena:StartQueryExecution", "athena:StopQueryExecution", "athena:GetQueryExecution", "athena:GetQueryResults", "athena:GetWorkGroup"],
+      "Resource": "arn:aws:athena:us-east-1:__ACCOUNT__:workgroup/thornquist-analysts"
+    },
+    {
+      "Sid": "ReadCuratedTableMetadataAndAncestors",
+      "Effect": "Allow",
+      "Action": ["glue:GetDatabase", "glue:GetTable", "glue:GetPartition", "glue:GetPartitions", "glue:BatchGetPartition"],
+      "Resource": [
+        "arn:aws:glue:us-east-1:__ACCOUNT__:catalog",
+        "arn:aws:glue:us-east-1:__ACCOUNT__:database/__DATABASE__",
+        "arn:aws:glue:us-east-1:__ACCOUNT__:table/__DATABASE__/curated_sales"
+      ]
+    },
+    {
+      "Sid": "RequestLakeFormationAuthorizedDataAccess",
+      "Effect": "Allow",
+      "Action": "lakeformation:GetDataAccess",
+      "Resource": "*"
+    },
+    {
+      "Sid": "LocateResultsBucket",
+      "Effect": "Allow",
+      "Action": "s3:GetBucketLocation",
+      "Resource": "arn:aws:s3:::__BUCKET__"
+    },
+    {
+      "Sid": "ListAnalystResultsOnly",
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::__BUCKET__",
+      "Condition": {"StringLike": {"s3:prefix": ["athena-results/analyst", "athena-results/analyst/*"]}}
+    },
+    {
+      "Sid": "ManageQueryResultObjectsOnly",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject", "s3:PutObject", "s3:AbortMultipartUpload", "s3:ListMultipartUploadParts"],
+      "Resource": "arn:aws:s3:::__BUCKET__/athena-results/analyst/*"
+    }
+  ]
+}
