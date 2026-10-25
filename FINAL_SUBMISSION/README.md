@@ -1,12 +1,15 @@
 # Group E — Final Submission
 
-This folder contains the deliverables for the Thornquist Outfitters AWS Data Lake project.
+Thornquist Outfitters AWS Data Lake Project
 
-| Folder | Contents |
+| File | Contents |
 |---|---|
-| 01_Architecture | Architecture diagram |
-| 02_Source_Code | Ingestion, transformation, data quality, Athena queries, analytics, monitoring, tests, and reproduction scripts |
-| 03_Configuration | Configuration files, dependencies, and proposed access-control policies |
-| 04_Demo | Recorded project demonstration |
-| 05_Technical_Report | Project report in PDF format |
-| 06_Presentation | Presentation slides |
+| Thornquist_Architecture.pdf | Architecture diagram |
+| Source_Code.zip | Source code, SQL queries, analytics, tests, sample data, and clean-lab reproduction instructions |
+| Configuration.zip | Dependencies, test configuration, policy files, and governance documentation |
+| Thornquist_Technical_Report.pdf | Technical report |
+| Thornquist_Project_Demonstration_Group E.pptx | Presentation slides with the embedded demo recording |
+
+Open the PowerPoint in the desktop PowerPoint application to play the embedded demo.
+
+Proposed access controls that could not be implemented in Learner Lab are identified in the governance documentation.
